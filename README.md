@@ -13,3 +13,5 @@ RightClickList2 or RCL2 is a public bookmark service to share links and data wit
 - Auth - Firebase Auth
 - Bookmarks - Firebase Realtime Databaase
 - Site and HTML - Vue3 - Tailwind
+
+## License TBD
