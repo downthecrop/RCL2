@@ -15,7 +15,7 @@ export default defineComponent({
           to={{ name: 'Home' }}
           class="inline-block mb-6 text-3xl font-bold tracking-wider text-gray-600 uppercase"
         >
-          K-WD
+          RCL2
         </RouterLink>
 
         <main>

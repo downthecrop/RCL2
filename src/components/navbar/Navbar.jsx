@@ -81,7 +81,7 @@ export default defineComponent({
         <div class="flex items-center justify-between p-2">
           <div class="flex items-center space-x-3">
             <RouterLink to={{ name: 'Home' }} class="p-2 text-xl font-semibold tracking-wider uppercase lg:hidden">
-              K-WD
+              RCL2
             </RouterLink>
 
             <button onClick={toggleSidebar} class="p-2 rounded-md focus:outline-none focus:ring">
