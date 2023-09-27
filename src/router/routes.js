@@ -1,20 +1,18 @@
-import Home from '../views/Home'
-import Public from '../views/Public'
 import authRoutes from './auth'
-import AppLayout from '../components/layouts/AppLayout'
-import PublicLayout from '../components/layouts/PublicLayout'
+import AppLayout from '../components/layouts/AppLayout.vue'
+import PublicLayout from '../components/layouts/PublicLayout.vue'
 
 export default [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: AppLayout,
     meta: { layout: AppLayout },
   },
   {
     path: '/Public/',
     name: 'Public',
-    component: Public,
+    component: PublicLayout,
     meta: { layout: PublicLayout },
   },
   ...authRoutes,

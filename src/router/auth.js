@@ -1,18 +1,18 @@
-import Register from '../views/auth/Register'
-import Login from '../views/auth/Login'
-import GuestLayout from '../components/layouts/GuestLayout'
+
+import RegisterLayout from '../components/layouts/RegisterLayout.vue'
+import LoginLayout from '../components/layouts/LoginLayout.vue'
 
 export default [
   {
     path: '/auth/register',
     name: 'Register',
-    component: Register,
-    meta: { layout: GuestLayout },
+    component: RegisterLayout,
+    meta: { layout: RegisterLayout },
   },
   {
     path: '/auth/login',
     name: 'Login',
-    component: Login,
-    meta: { layout: GuestLayout },
+    component: LoginLayout,
+    meta: { layout: LoginLayout },
   },
 ]
