@@ -5,6 +5,10 @@
       <Navbar />
       <div class="flex-1">
         <div>
+          <div>
+            <p v-if="isLoggedIn">User is logged in as {{ auth.user.id }}</p>
+            <p v-else>User is not logged in</p>
+          </div>
           <main class="p-5">
             <div class="min-h-full mt-6 overflow-hidden overflow-x-auto border border-gray-700 rounded-md">
               <table class="w-full divide-y divide-gray-700">
@@ -12,19 +16,15 @@
                   <tr>
                     <th scope="col"
                       class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
-                      Name
+                      URL
                     </th>
                     <th scope="col"
                       class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
-                      Title
+                      Link Title
                     </th>
                     <th scope="col"
                       class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
-                      Status
-                    </th>
-                    <th scope="col"
-                      class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
-                      Role
+                      Created
                     </th>
                     <th scope="col"
                       class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
@@ -33,28 +33,27 @@
                   </tr>
                 </thead>
                 <tbody class="bg-gray-800 divide-y divide-gray-700">
-                  <tr v-for="user in users" :key="user.email" class="transition-all hover:bg-gray-700">
+                  <tr v-for="link in links" class="transition-all hover:bg-gray-700">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
                         <div class="flex-shrink-0 w-10 h-10">
-                          <img class="w-10 h-10 rounded-full" :src="user.avatar" alt="" />
+                          <img class="w-10 h-10 rounded-full" src='https://downthecrop.github.io/downthecrop.png' alt="" />
                         </div>
                         <div class="ml-4">
-                          <div class="text-sm font-medium text-gray-300">{{ user.name }}</div>
-                          <div class="text-sm text-gray-500">{{ user.email }}</div>
+                          <div class="text-sm font-medium text-gray-300">{{ link.link_url }}</div>
+                          <div class="text-sm text-gray-500">{{ link.link_name }}</div>
                         </div>
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-300">Regional Paradigm Technician</div>
+                      <div class="text-sm text-gray-300">{{ link.link_name }}</div>
                       <div class="text-sm text-gray-500">Optimization</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <span class="text-sm text-gray-300">
-                        {{ user.active ? 'Active' : 'Not Active' }}
+                        {{ link.created }}
                       </span>
                     </td>
-                    <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{{ user.role }}</td>
                     <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
                       <a href="#" class="text-indigo-400 hover:text-indigo-500">
                         Edit
@@ -75,41 +74,59 @@
   </div>
 </template>
 
-<script>
+<script setup>
 // No changes in the script
 import { defineComponent, onMounted, onUnmounted } from 'vue'
-import Sidebar from '../sidebar/Sidebar.vue'
-import Navbar from '../navbar/Navbar.vue'
-import { users } from '../../data/users'
-import SettingsPanel from '../panels/SettingsPanel.vue'
-import { handleResize, handleScroll, isSidebarOpen } from '../../states/globalStates'
+import Sidebar from '../navbar/VerticalNavbar.vue'
+import Navbar from '../navbar/TopNavbar.vue'
+import { computed, ref } from 'vue'
+import { useAuthStore } from '../../store/authStore'
+import { supabase } from '../../supabase'
 
-export default defineComponent({
+const auth = useAuthStore()
+const isLoggedIn = computed(() => auth.user !== null)
+
+const links = ref([]) // Step 1: Define a ref to hold your links
+
+async function fetchUserLinks() {
+  const user = auth.user;
+
+  console.log("User ID:", user?.id); // Log the user ID
+
+  if (user) {
+    const { data, error } = await supabase
+      .from('user_links')
+      .select('*')
+      .eq('user_id', user.id);
+
+    console.log("Data:", data); // Log the fetched data
+    console.log("Error:", error); // Log the error if there is one
+
+    if (error) {
+      console.error("Error fetching links:", error);
+      return null;
+    }
+
+    links.value = data;
+  } else {
+    console.error("User is not authenticated.");
+    return null;
+  }
+}
+
+// Fetch the links when the component is mounted
+onMounted(fetchUserLinks)
+
+defineComponent({
   components: {
     Sidebar,
     Navbar,
-    SettingsPanel,
   },
-  setup(_, { slots }) {
-    onMounted(() => {
-      window.addEventListener('resize', handleResize)
-      window.addEventListener('scroll', handleScroll)
-    })
-
-    onUnmounted(() => {
-      window.removeEventListener('resize', handleResize)
-      window.removeEventListener('scroll', handleScroll)
-    })
-
+  setup() {
     return {
-      isSidebarOpen,
+      links
     }
-  },
-  data() {
-    return {
-      users: users,
-    }
-  },
+  }
 })
 </script>
 

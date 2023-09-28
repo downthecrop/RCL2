@@ -12,7 +12,6 @@
 <script>
 import { computed, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { supabase } from './supabase';
 
 export default {
   setup() {
@@ -21,17 +20,6 @@ export default {
       return currentRoute.value.meta.layout
     })
     const session = ref(null);
-
-    onMounted(() => {
-      supabase.auth.getSession().then(({ data }) => {
-        session.value = data.session;
-      });
-
-      supabase.auth.onAuthStateChange((_, _session) => {
-        session.value = _session;
-      });
-    });
-
     return {
       Layout,
       session,
