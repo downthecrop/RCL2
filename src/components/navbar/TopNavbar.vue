@@ -1,8 +1,6 @@
 <template>
-  <header
-    class="sticky top-0 z-10 bg-gray-900 flex-shrink-0 border-b border-gray-700 transition-transform duration-500"
-    :class="{ '-translate-y-full': scrollingDown, '-translate-y-0': scrollingUp }"
-  >
+  <header class="sticky top-0 z-10 bg-gray-900 flex-shrink-0 border-b border-gray-700 transition-transform duration-500"
+    :class="{ '-translate-y-full': scrollingDown, '-translate-y-0': scrollingUp }">
     <div class="flex items-center justify-between p-2">
       <div class="flex items-center space-x-3">
         <RouterLink to="/home" class="p-2 text-xl font-semibold tracking-wider text-white uppercase">
@@ -23,14 +21,15 @@
           <CogIcon aria-hidden="true" class="w-6 h-6 text-gray-300" />
         </button>
 
-        <button :class="'bg-green-500 p-2 rounded-md text-white focus:outline-none focus:ring focus:ring-gray-500'" @click="addLink('https://downthecrop.xyz',false)">
+        <button :class="'bg-green-500 p-2 rounded-md text-white focus:outline-none focus:ring focus:ring-gray-500'"
+          @click="addLink('https://downthecrop.xyz', false)">
           PushLink
         </button>
 
-        <button :class="(isLoggedIn ? 'bg-red-500' : 'bg-blue-500') + ' p-2 rounded-md text-white focus:outline-none focus:ring focus:ring-gray-500'">
+        <button @click="() => signInOrOut(isLoggedIn)"
+          :class="(isLoggedIn ? 'bg-red-500' : 'bg-blue-500') + ' p-2 rounded-md text-white focus:outline-none focus:ring focus:ring-gray-500'">
           {{ isLoggedIn ? "Logout" : "Login" }}
         </button>
-
         <UserMenu />
       </nav>
     </div>
@@ -45,6 +44,7 @@ import { ChevronDoubleRightIcon, SearchIcon, BellIcon, CogIcon } from '@heroicon
 import { computed } from 'vue'
 import { useAuthStore } from '../../store/authStore'
 import { supabase } from '../../supabase';
+import router from '../../router/index.js'
 
 async function addLink(url, isPrivate) {
   const user = auth.user;
@@ -68,6 +68,10 @@ async function addLink(url, isPrivate) {
   }
 }
 
+const signInOrOut = (isLoggedIn) => {
+  if (isLoggedIn) { signOut() } else { signIn() }
+}
+
 const genLink = () => {
   const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let randomString = '';
@@ -82,6 +86,16 @@ const genLink = () => {
 
 const auth = useAuthStore()
 const isLoggedIn = computed(() => auth.user !== null)
+
+async function signOut() {
+  const auth = useAuthStore()
+  await supabase.auth.signOut();
+  auth.setUser(null)
+}
+
+function signIn() {
+  router.push({ path: '/login', replace: true })
+}
 
 defineComponent({
   // Removed IconButton from components

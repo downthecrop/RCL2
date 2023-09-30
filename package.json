@@ -26,10 +26,12 @@
     "@headlessui/vue": "^1.4.1",
     "@heroicons/vue": "^1.0.4",
     "@supabase/supabase-js": "^2.36.0",
+    "auth-ui-vue": "^0.1.1",
     "chart.js": "^3.5.1",
     "font-awesome": "^4.7.0",
     "pinia": "^2.1.6",
     "vue": "^3.0.5",
+    "vue-auth-ui": "^0.1.1",
     "vue-router": "4"
   },
   "devDependencies": {

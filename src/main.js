@@ -1,25 +1,26 @@
-import { createApp, provide } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue'
 import router from './router'
 import App from './App.vue'
 import './assets/css/main.css'
+import { createPinia } from 'pinia'
+import { createClient } from '@supabase/supabase-js'
 import 'font-awesome/css/font-awesome.css'
 import { useAuthStore } from './store/authStore'
-import { createClient } from '@supabase/supabase-js'
 import { supabase } from './supabase'
 
 const app = createApp(App)
-const pinia = createPinia()
-
+app.use(createPinia())
 app.use(router)
-app.use(pinia)
-app.mount('#app')
+app.provide('supabase', supabase)
 
-
-// Initialize your auth store
-const auth = useAuthStore()
-
-// Listen to Supabase auth changes
 supabase.auth.onAuthStateChange((event, session) => {
-  auth.setUser(session?.user ?? null)
-})
+  const authStore = useAuthStore();
+  console.log(event,session)
+  if (event === 'SIGNED_IN') {
+    authStore.setUser(session.user);
+  } else if (event !== 'INITIAL_SESSION') {
+    authStore.setUser(null);
+  }
+});
+
+app.mount('#app')

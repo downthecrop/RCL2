@@ -6,9 +6,10 @@
       <div class="flex-1">
         <div>
           <div>
-            <p v-if="isLoggedIn">User is logged in as {{ auth.user.id }}</p>
+            <p v-if="isLoggedIn">User is logged in as {{ authStore.user.id }}</p>
             <p v-else>User is not logged in</p>
           </div>
+          <LinkInput v-if="isLoggedIn" />
           <main class="p-5">
             <div class="min-h-full mt-6 overflow-hidden overflow-x-auto border border-gray-700 rounded-md">
               <table class="w-full divide-y divide-gray-700">
@@ -77,19 +78,21 @@
 <script setup>
 // No changes in the script
 import { defineComponent, onMounted, onUnmounted } from 'vue'
-import Sidebar from '../navbar/VerticalNavbar.vue'
-import Navbar from '../navbar/TopNavbar.vue'
+import Sidebar from './navbar/VerticalNavbar.vue'
+import Navbar from './navbar/TopNavbar.vue'
 import { computed, ref } from 'vue'
-import { useAuthStore } from '../../store/authStore'
-import { supabase } from '../../supabase'
+import { useAuthStore } from '../store/authStore'
+import { supabase } from '../supabase'
+import LinkInput from './elements/LinkInput.vue'
 
-const auth = useAuthStore()
-const isLoggedIn = computed(() => auth.user !== null)
+const authStore = useAuthStore();
+const user = computed(() => authStore.user);
+const isLoggedIn = computed(() => authStore.user != null);
 
 const links = ref([]) // Step 1: Define a ref to hold your links
 
 async function fetchUserLinks() {
-  const user = auth.user;
+  const user = authStore.user;
 
   console.log("User ID:", user?.id); // Log the user ID
 
@@ -121,6 +124,7 @@ defineComponent({
   components: {
     Sidebar,
     Navbar,
+    LinkInput
   },
   setup() {
     return {

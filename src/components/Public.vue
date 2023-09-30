@@ -65,7 +65,7 @@
 
 <script>
 import { defineComponent } from 'vue'
-import { users } from '../../data/users'
+import { users } from '../data/users'
 
 export default defineComponent({
 data() {
