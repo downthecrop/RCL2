@@ -66,8 +66,8 @@ import { supabase } from '../supabase'
 
 async function getUUID(username) {
   const { data, error } = await supabase
-    .from('users')
-    .select('id')
+    .from('username_mapping')
+    .select('uid')
     .eq('username', username);
 
   if (error) {
@@ -76,7 +76,7 @@ async function getUUID(username) {
   }
 
   if (data && data.length > 0) {
-    return data[0].id;
+    return data[0].uid;
   } else {
     console.error("No user found with this username");
     return null;

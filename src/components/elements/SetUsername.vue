@@ -21,11 +21,11 @@ const auth = useAuthStore()
 
 async function Setusername(username) {
     const newUser = {
-    id: auth.user.id, // This should be the user's actual UUID
-    username: username // This should be the user's chosen username
+    uid: auth.user.id,
+    username: username
   };
   const { data, error } = await supabase
-    .from('users')
+    .from('username_mapping')
     .insert([newUser]);
     console.log("Submitted new name",username)
 }
