@@ -29,36 +29,55 @@
                     </th>
                     <th scope="col"
                       class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
+                      Private
+                    </th>
+                    <th scope="col"
+                      class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
                       Actions
                     </th>
                   </tr>
                 </thead>
                 <tbody class="bg-gray-800 divide-y divide-gray-700">
-                  <tr v-for="link in links" class="transition-all hover:bg-gray-700">
+                  <tr v-for="link in links" :key="link.id" class="transition-all hover:bg-gray-700">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
                         <div class="flex-shrink-0 w-10 h-10">
-                          <img class="w-10 h-10 rounded-full" src='https://downthecrop.github.io/downthecrop.png' alt="" />
+                          <img class="w-10 h-10 rounded-full" src='https://downthecrop.github.io/downthecrop.png'
+                            alt="" />
                         </div>
-                        <div class="ml-4">
+                        <div v-if="editingLink !== link.id" class="ml-4">
                           <div class="text-sm font-medium text-gray-300">{{ link.link_url }}</div>
-                          <div class="text-sm text-gray-500">{{ link.link_name }}</div>
+                        </div>
+                        <div v-else class="ml-4">
+                          <input v-model="link.link_url" type="text" class="text-sm font-medium text-gray-300">
                         </div>
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-300">{{ link.link_name }}</div>
-                      <div class="text-sm text-gray-500">Optimization</div>
+                      <div v-if="editingLink !== link.id" class="text-sm text-gray-300">
+                        {{ link.link_name }}
+                      </div>
+                      <div v-else>
+                        <input v-model="link.link_name" type="text" class="text-sm text-gray-300">
+                      </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <span class="text-sm text-gray-300">
-                        {{ link.created }}
-                      </span>
+                      <div class="text-sm font-medium text-gray-300">
+                        {{ formatDate(link.updated_at) }}
+                      </div>
                     </td>
                     <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
-                      <a href="#" class="text-indigo-400 hover:text-indigo-500">
+                      <input v-if="editingLink === link.id" type="checkbox" v-model="link.is_private">
+                      <span v-else>{{ link.is_private ? 'Yes' : 'No' }}</span>
+                    </td>
+                    <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+                      <a v-if="editingLink !== link.id" href="#" class="text-indigo-400 hover:text-indigo-500" @click="showEditForm(link.id)">
                         Edit
                       </a>
+                      <div v-else>
+                        <button @click="updateLink(link)">Confirm</button>
+                        <button @click="cancelEdit">Cancel</button>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -66,7 +85,6 @@
             </div>
           </main>
         </div>
-        <Footer />
       </div>
     </div>
     <SearchPanel />
@@ -74,50 +92,83 @@
     <NotificationsPanel />
   </div>
 </template>
-
 <script setup>
-// No changes in the script
-import { defineComponent, onMounted, onUnmounted } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import Sidebar from './navbar/VerticalNavbar.vue'
 import Navbar from './navbar/TopNavbar.vue'
-import { computed, ref } from 'vue'
+import LinkInput from './elements/LinkInput.vue'
+import { computed, ref, reactive } from 'vue'
 import { useAuthStore } from '../store/authStore'
 import { supabase } from '../supabase'
-import LinkInput from './elements/LinkInput.vue'
 
 const authStore = useAuthStore();
-const user = computed(() => authStore.user);
 const isLoggedIn = computed(() => authStore.user != null);
+const links = ref([]);
+const editingLink = ref(null);
 
-const links = ref([]) // Step 1: Define a ref to hold your links
+function formatDate(timestamp) {
+  const dateObject = new Date(timestamp);
+  const month = dateObject.toDateString().split(' ')[1];
+  const day = dateObject.getDate();
+  const year = dateObject.getFullYear();
+  let hours = dateObject.getHours();
+  const minutes = dateObject.getMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  const minutesStr = minutes < 10 ? '0' + minutes : minutes;
+
+  return `${month} ${day} ${year} - ${hours}:${minutesStr} ${ampm}`;
+}
+
+
+function showEditForm(linkId) {
+  editingLink.value = linkId;
+}
+
+function cancelEdit() {
+  editingLink.value = null;
+}
+
+async function updateLink(link) {
+
+  // Generate current time in required format
+  const now = new Date().toISOString();
+  const formattedNow = now.slice(0, 23) + "+00";
+
+  link.updated_at = formattedNow;
+
+  const { data, error } = await supabase
+    .from('user_links')
+    .update([link])
+    .eq('id', link.id);
+
+  if (error) {
+    console.error('Error updating link:', error);
+    return;
+  }
+  fetchUserLinks();
+  cancelEdit();
+}
+
 
 async function fetchUserLinks() {
   const user = authStore.user;
+  if (!user) return null;
+  const { data, error } = await supabase
+    .from('user_links')
+    .select('*')
+    .eq('user_id', user.id)
+    .order('updated_at', { ascending: false });
 
-  console.log("User ID:", user?.id); // Log the user ID
-
-  if (user) {
-    const { data, error } = await supabase
-      .from('user_links')
-      .select('*')
-      .eq('user_id', user.id);
-
-    console.log("Data:", data); // Log the fetched data
-    console.log("Error:", error); // Log the error if there is one
-
-    if (error) {
-      console.error("Error fetching links:", error);
-      return null;
-    }
-
-    links.value = data;
-  } else {
-    console.error("User is not authenticated.");
+  if (error) {
+    console.error("Error fetching links:", error);
     return null;
   }
+  links.value = data;
 }
 
-// Fetch the links when the component is mounted
 onMounted(fetchUserLinks)
 
 defineComponent({
@@ -125,11 +176,6 @@ defineComponent({
     Sidebar,
     Navbar,
     LinkInput
-  },
-  setup() {
-    return {
-      links
-    }
   }
 })
 </script>
