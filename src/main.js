@@ -15,7 +15,6 @@ app.provide('supabase', supabase)
 
 supabase.auth.onAuthStateChange((event, session) => {
   const authStore = useAuthStore();
-  console.log(event,session)
   if (event === 'SIGNED_IN') {
     authStore.setUser(session.user);
   } else if (event !== 'INITIAL_SESSION') {

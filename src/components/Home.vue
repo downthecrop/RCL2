@@ -10,6 +10,7 @@
             <p v-else>User is not logged in</p>
           </div>
           <LinkInput v-if="isLoggedIn" />
+          <Setusername v-if="isLoggedIn" />
           <main class="p-5">
             <div class="min-h-full mt-6 overflow-hidden overflow-x-auto border border-gray-700 rounded-md">
               <table class="w-full divide-y divide-gray-700">
@@ -71,10 +72,15 @@
                       <span v-else>{{ link.is_private ? 'Yes' : 'No' }}</span>
                     </td>
                     <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
-                      <a v-if="editingLink !== link.id" href="#" class="text-indigo-400 hover:text-indigo-500" @click="showEditForm(link.id)">
+                      <a v-if="editingLink !== link.id" href="#" class="text-indigo-400 hover:text-indigo-500"
+                        @click="showEditForm(link.id)">
                         Edit
                       </a>
                       <div v-else>
+                        <button @click="deleteLink(link)"
+                          class="text-red-400 hover:text-red-500">
+                          Delete
+                        </button>
                         <button @click="updateLink(link)">Confirm</button>
                         <button @click="cancelEdit">Cancel</button>
                       </div>
@@ -97,6 +103,7 @@ import { defineComponent, onMounted } from 'vue'
 import Sidebar from './navbar/VerticalNavbar.vue'
 import Navbar from './navbar/TopNavbar.vue'
 import LinkInput from './elements/LinkInput.vue'
+import Setusername from './elements/SetUsername.vue'
 import { computed, ref, reactive } from 'vue'
 import { useAuthStore } from '../store/authStore'
 import { supabase } from '../supabase'
@@ -120,6 +127,19 @@ function formatDate(timestamp) {
   const minutesStr = minutes < 10 ? '0' + minutes : minutes;
 
   return `${month} ${day} ${year} - ${hours}:${minutesStr} ${ampm}`;
+}
+
+async function deleteLink(link) {
+  const { data, error } = await supabase
+    .from('user_links')
+    .delete()
+    .eq('id', link.id);
+
+  if (error) {
+    console.error('Error deleting link:', error);
+    return;
+  }
+  fetchUserLinks();
 }
 
 

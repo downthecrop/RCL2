@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { supabase } from '../supabase';
 import Home from '../components/Home.vue'
 import Login from '../components/Login.vue'
+import Public from '../components/Public.vue'
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
     path: '/login',
     name: 'SignIn',
     component: Login
+  },
+  {
+    path: '/public/:id',
+    name: 'Public',
+    component: Public
   },
 ]
 const router = createRouter({
