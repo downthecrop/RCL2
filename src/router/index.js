@@ -15,11 +15,11 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'SignIn',
+    name: 'Login',
     component: Login
   },
   {
-    path: '/public/:id',
+    path: '/u/:id',
     name: 'Public',
     component: Public
   },
@@ -29,15 +29,13 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  // get current user info
-  const currentUser = supabase.auth.getUser();
-  const requiresAuth = to.matched.some
-  (record => record.meta.requiresAuth);
-
-  if(requiresAuth && !currentUser) next('sign-in');
-  //else if(!requiresAuth && currentUser) next("/");
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  if(!requiresAuth) next();
+  const currentUser = (await supabase.auth.getUser()).data.user;
+  if (!currentUser) next('/login');
+  else if (!requiresAuth && currentUser && to.path === '/login') next('/');
   else next();
-})
+});
 
 export default router

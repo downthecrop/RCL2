@@ -91,15 +91,12 @@ async function signOut() {
   const auth = useAuthStore()
   await supabase.auth.signOut();
   auth.setUser(null)
+  router.push({ path: '/', replace: true })
 }
 
 function signIn() {
   router.push({ path: '/login', replace: true })
 }
-
-defineComponent({
-  // Removed IconButton from components
-})
 </script>
 
 <style scoped>

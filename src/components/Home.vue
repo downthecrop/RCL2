@@ -5,12 +5,8 @@
       <Navbar />
       <div class="flex-1">
         <div>
-          <div>
-            <p v-if="isLoggedIn">User is logged in as {{ authStore.user.id }}</p>
-            <p v-else>User is not logged in</p>
-          </div>
-          <LinkInput v-if="isLoggedIn" />
-          <Setusername v-if="isLoggedIn" />
+          <LinkInput />
+          <Setusername />
           <main class="p-5">
             <div class="min-h-full mt-6 overflow-hidden overflow-x-auto border border-gray-700 rounded-md">
               <table class="w-full divide-y divide-gray-700">
@@ -82,7 +78,7 @@
                           Delete
                         </button>
                         <button @click="updateLink(link)">Confirm</button>
-                        <button @click="cancelEdit">Cancel</button>
+                        <button @click="hideEditForm">Cancel</button>
                       </div>
                     </td>
                   </tr>
@@ -104,92 +100,57 @@ import Sidebar from './navbar/VerticalNavbar.vue'
 import Navbar from './navbar/TopNavbar.vue'
 import LinkInput from './elements/LinkInput.vue'
 import Setusername from './elements/SetUsername.vue'
-import { computed, ref, reactive } from 'vue'
+import { ref } from 'vue'
 import { useAuthStore } from '../store/authStore'
 import { supabase } from '../supabase'
 
-const authStore = useAuthStore();
-const isLoggedIn = computed(() => authStore.user != null);
-const links = ref([]);
+const auth = useAuthStore();
 const editingLink = ref(null);
+const links = ref([]);
 
 function formatDate(timestamp) {
-  const dateObject = new Date(timestamp);
-  const month = dateObject.toDateString().split(' ')[1];
-  const day = dateObject.getDate();
-  const year = dateObject.getFullYear();
-  let hours = dateObject.getHours();
-  const minutes = dateObject.getMinutes();
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  const minutesStr = minutes < 10 ? '0' + minutes : minutes;
-
-  return `${month} ${day} ${year} - ${hours}:${minutesStr} ${ampm}`;
+  const d = new Date(timestamp);
+  const month = d.toDateString().split(' ')[1];
+  const day = d.getDate(), year = d.getFullYear();
+  let hour = d.getHours(), min = d.getMinutes();
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+  hour = hour % 12 || 12;
+  return `${month} ${day} ${year} - ${hour}:${min < 10 ? '0' + min : min} ${ampm}`;
 }
 
 async function deleteLink(link) {
-  const { data, error } = await supabase
-    .from('user_links')
-    .delete()
-    .eq('id', link.id);
-
-  if (error) {
-    console.error('Error deleting link:', error);
-    return;
-  }
-  fetchUserLinks();
+  const { error } = await supabase.from('user_links').delete().eq('id', link.id);
+  error ? console.error('Error deleting link:', error) : auth.fetchUserLinks(auth.user.id);
 }
-
 
 function showEditForm(linkId) {
   editingLink.value = linkId;
 }
 
-function cancelEdit() {
+function hideEditForm() {
   editingLink.value = null;
 }
 
 async function updateLink(link) {
-
-  // Generate current time in required format
-  const now = new Date().toISOString();
-  const formattedNow = now.slice(0, 23) + "+00";
-
-  link.updated_at = formattedNow;
-
-  const { data, error } = await supabase
-    .from('user_links')
-    .update([link])
-    .eq('id', link.id);
-
+  link.updated_at = new Date().toISOString().slice(0, 23) + "+00"; // New Timestamp
+  const { error } = await supabase.from('user_links').update([link]).eq('id', link.id);
   if (error) {
     console.error('Error updating link:', error);
     return;
   }
-  fetchUserLinks();
-  cancelEdit();
+  links.value = await auth.fetchUserLinks(auth.user.id);
+  hideEditForm();
 }
 
-
-async function fetchUserLinks() {
-  const user = authStore.user;
-  if (!user) return null;
-  const { data, error } = await supabase
-    .from('user_links')
-    .select('*')
-    .eq('user_id', user.id)
-    .order('updated_at', { ascending: false });
-
-  if (error) {
-    console.error("Error fetching links:", error);
-    return null;
+onMounted(async () => {
+  try {
+    if (auth.user) {
+      links.value = await auth.fetchUserLinks(auth.user.id);
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
   }
-  links.value = data;
-}
-
-onMounted(fetchUserLinks)
+})
 
 defineComponent({
   components: {
