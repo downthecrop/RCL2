@@ -9,7 +9,6 @@
     :providers="['twitch', 'github', 'google']"
     socialLayout="col"
     :appearance="appearance"
-    :error="myError"
     @signInWithOAuth="provider => supabase.auth.signInWithOAuth(provider)"
     />
     </div>
@@ -30,26 +29,6 @@ const appearance = {
 const supabase = inject('supabase')
 const auth = useAuthStore()
 const isLoggedIn = computed(() => auth.user !== null)
-
-const signIn = async () => {
-  try {
-    await auth.signIn('email@example.com', 'password')
-  } catch (error) {
-    console.log(auth)
-    console.error('Error signing in:', error)
-  }
-}
-
-async function signInTwitch() {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'github', // Or any other provider you have setup for OAuth
-  })
-}
-
-const signOut = async () => {
-  await supabase.auth.signOut();
-  auth.setUser(null)
-}
 
 </script>
 <style scoped>

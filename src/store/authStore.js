@@ -1,4 +1,5 @@
 ﻿import { defineStore } from 'pinia';
+import { supabase } from '../supabase'
 
 export const useAuthStore = defineStore({
   id: 'auth',
@@ -8,6 +9,36 @@ export const useAuthStore = defineStore({
   actions: {
     setUser(newUser) {
       this.user = newUser;
+    },
+    async getUUID(username) {
+      const { data, error } = await supabase
+        .from('username_mapping')
+        .select('uid')
+        .eq('username', username);
+    
+      if (error) {
+        console.error("Error fetching UUID:", error);
+        return null;
+      }
+    
+      if (data && data.length > 0) {
+        return data[0].uid;
+      } else {
+        return null;
+      }
+    },
+    async fetchUserLinks(uuid) {
+      const { data, error } = await supabase
+        .from('user_links')
+        .select('*')
+        .eq('user_id', uuid)
+        .order('updated_at', { ascending: false });
+    
+      if (error) {
+        console.error("Error fetching links:", error);
+        return null;
+      }
+      return data || [];
     }
   }
 });
