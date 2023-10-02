@@ -19,10 +19,7 @@ import { supabase } from '../../supabase';
 let inputData = "";
 const auth = useAuthStore()
 
-const logInput = (input) => {
-    console.log(input)
-}
-
+// This will be imported into the submit page..
 async function addLink(url, isPrivate) {
   const user = auth.user;
   if (user) {

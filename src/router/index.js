@@ -14,11 +14,6 @@ const routes = [
     }
   },
   {
-    path: '/sign-up',
-    name: 'SignUp',
-    component: Home
-  },
-  {
     path: '/login',
     name: 'SignIn',
     component: Login
