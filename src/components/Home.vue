@@ -5,8 +5,24 @@
       <Navbar />
       <div class="flex-1">
         <div>
-          <LinkInput />
-          <Setusername />
+          <div class="wrapper">
+            <div class="inputfield">
+              <input v-model="inputData" placeholder="Submit A new link" />
+            </div>
+            <div>
+              <button @click="() => addLink(inputData, false)">Submit Link</button>
+            </div>
+          </div>
+          <div>
+            <div class="wrapper">
+              <div class="inputfield">
+                <input v-model="username" placeholder="What's my new name?!" />
+              </div>
+              <div>
+                <button @click="() => setUsername(username)">Setusername</button>
+              </div>
+            </div>
+          </div>
           <main class="p-5">
             <div class="min-h-full mt-6 overflow-hidden overflow-x-auto border border-gray-700 rounded-md">
               <table class="w-full divide-y divide-gray-700">
@@ -73,8 +89,7 @@
                         Edit
                       </a>
                       <div v-else>
-                        <button @click="deleteLink(link)"
-                          class="text-red-400 hover:text-red-500">
+                        <button @click="deleteLink(link)" class="text-red-400 hover:text-red-500">
                           Delete
                         </button>
                         <button @click="updateLink(link)">Confirm</button>
@@ -98,8 +113,6 @@
 import { defineComponent, onMounted } from 'vue'
 import Sidebar from './navbar/VerticalNavbar.vue'
 import Navbar from './navbar/TopNavbar.vue'
-import LinkInput from './elements/LinkInput.vue'
-import Setusername from './elements/SetUsername.vue'
 import { ref } from 'vue'
 import { useAuthStore } from '../store/authStore'
 import { supabase } from '../supabase'
@@ -119,9 +132,31 @@ function formatDate(timestamp) {
 }
 
 async function deleteLink(link) {
+  console.log("Deleting link: ",link)
   const { error } = await supabase.from('user_links').delete().eq('id', link.id);
   error ? console.error('Error deleting link:', error) : auth.fetchUserLinks(auth.user.id);
+  links.value = await auth.fetchUserLinks(auth.user.id);
+  hideEditForm();
 }
+
+async function setUsername(username) {
+  const newUser = {
+    uid: auth.user.id,
+    username: username,
+  };
+
+  const { data, error } = await supabase
+    .from('username_mapping')
+    .upsert([newUser], { onConflict: ['uid'] });
+
+  if (error) {
+    console.error("An error occurred:", error);
+    return;
+  }
+
+  console.log("Submitted new name", newUser.uid);
+}
+
 
 function showEditForm(linkId) {
   editingLink.value = linkId;
@@ -129,6 +164,22 @@ function showEditForm(linkId) {
 
 function hideEditForm() {
   editingLink.value = null;
+}
+
+async function addLink(link) {
+  let tmp = {
+    "user_id": auth.user.id,
+    "link_url": link,
+    "link_name": link,
+    "is_private": false,
+  }
+  const { error } = await supabase.from('user_links').insert([tmp])
+  if (error) {
+    console.error('Error updating link:', error);
+    return;
+  }
+  links.value = await auth.fetchUserLinks(auth.user.id);
+  hideEditForm();
 }
 
 async function updateLink(link) {
@@ -156,11 +207,12 @@ defineComponent({
   components: {
     Sidebar,
     Navbar,
-    LinkInput
   }
 })
 </script>
 
 <style scoped>
-/* Add your component-specific styles here */
+.wrapper {
+  display: flex;
+}
 </style>

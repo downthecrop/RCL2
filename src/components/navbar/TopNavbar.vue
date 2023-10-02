@@ -8,7 +8,7 @@
         </RouterLink>
       </div>
       <nav aria-label="Secondary" class="flex items-center space-x-3">
-        <!-- Replaced IconButton with regular buttons -->
+
         <button @click="openSearchPanel" class="p-2 rounded-md focus:outline-none focus:ring focus:ring-gray-500">
           <SearchIcon aria-hidden="true" class="w-6 h-6 text-gray-300" />
         </button>
@@ -80,7 +80,6 @@ const genLink = () => {
     const randomIndex = Math.floor(Math.random() * chars.length);
     randomString += chars[randomIndex];
   }
-
   return `https://${randomString}.com`;
 }
 
@@ -91,7 +90,7 @@ async function signOut() {
   const auth = useAuthStore()
   await supabase.auth.signOut();
   auth.setUser(null)
-  router.push({ path: '/', replace: true })
+  router.push({ path: '/login', replace: true })
 }
 
 function signIn() {
