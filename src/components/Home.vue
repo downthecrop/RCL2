@@ -5,6 +5,9 @@
       <Navbar />
       <div class="flex-1">
         <div>
+          <Transition>
+            <Loadingbar v-if="loading" />
+          </Transition>
           <div class="wrapper">
             <div class="inputfield">
               <input v-model="inputData" placeholder="Submit A new link" />
@@ -113,6 +116,7 @@
 import { defineComponent, onMounted } from 'vue'
 import Sidebar from './navbar/VerticalNavbar.vue'
 import Navbar from './navbar/TopNavbar.vue'
+import Loadingbar from './elements/Loadingbar.vue'
 import { ref } from 'vue'
 import { useAuthStore } from '../store/authStore'
 import { supabase } from '../supabase'
@@ -120,6 +124,7 @@ import { supabase } from '../supabase'
 const auth = useAuthStore();
 const editingLink = ref(null);
 const links = ref([]);
+let loading = ref(true)
 
 function formatDate(timestamp) {
   const d = new Date(timestamp);
@@ -197,6 +202,7 @@ onMounted(async () => {
   try {
     if (auth.user) {
       links.value = await auth.fetchUserLinks(auth.user.id);
+      loading.value = false;
     }
   } catch (error) {
     console.error("An error occurred:", error);
@@ -207,11 +213,23 @@ defineComponent({
   components: {
     Sidebar,
     Navbar,
+    Loadingbar,
   }
 })
 </script>
 
 <style scoped>
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
 .wrapper {
   display: flex;
 }
