@@ -1,4 +1,4 @@
-﻿import { defineStore } from 'pinia';
+import { defineStore } from 'pinia';
 import { supabase } from '../supabase'
 
 export const useAuthStore = defineStore({
@@ -20,7 +20,7 @@ export const useAuthStore = defineStore({
         console.error("Error fetching UUID:", error);
         return null;
       }
-    
+      
       if (data && data.length > 0) {
         return data[0].uid;
       } else {

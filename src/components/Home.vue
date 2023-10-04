@@ -1,10 +1,12 @@
 <template>
   <div class="max-w-[100vw] flex min-h-screen antialiased text-gray-300 bg-gray-900">
+    <SlideRightModal :show="showModal" @close="showModal = false" />
     <Sidebar />
     <div class="flex max-w-full flex-col flex-1">
       <Navbar />
       <div class="flex-1">
         <div>
+          <button @click="showModal = !showModal">Toggle Modal</button>
           <Transition name="fade" mode="out-in">
             <div v-if="loading">
               <div class="loading-wrapper">
@@ -12,20 +14,27 @@
               </div>
             </div>
             <div v-else>
-              <div class="wrapper flex">
-                <div class="inputfield">
-                  <input v-model="inputData" placeholder="Submit A new link" class="p-2 w-full bg-gray-800 text-white rounded"/>
+              <div style="display: grid; align-items: center; justify-content: center">
+                <div class="wrapper flex">
+                  <div class="inputfield">
+                    <input v-model="inputData" placeholder="Submit A new link"
+                      class="p-2 w-full bg-gray-800 text-white rounded" />
+                  </div>
+                  <div class="ml-4">
+                    <button @click="() => addLink(inputData, false)"
+                      class="px-4 py-2 bg-blue-500 text-white rounded">Submit
+                      Link</button>
+                  </div>
                 </div>
-                <div class="ml-4">
-                  <button @click="() => addLink(inputData, false)" class="px-4 py-2 bg-blue-500 text-white rounded">Submit Link</button>
-                </div>
-              </div>
-              <div class="wrapper flex mt-4">
-                <div class="inputfield">
-                  <input v-model="username" placeholder="What's my new name?!" class="p-2 w-full bg-gray-800 text-white rounded"/>
-                </div>
-                <div class="ml-4">
-                  <button @click="() => setUsername(username)" class="px-4 py-2 bg-blue-500 text-white rounded">Setusername</button>
+                <div class="wrapper flex mt-4">
+                  <div class="inputfield">
+                    <input v-model="username" placeholder="What's my new name?!"
+                      class="p-2 w-full bg-gray-800 text-white rounded" />
+                  </div>
+                  <div class="ml-4">
+                    <button @click="() => setUsername(username)"
+                      class="px-4 py-2 bg-blue-500 text-white rounded">Setusername</button>
+                  </div>
                 </div>
               </div>
               <main class="p-5">
@@ -124,7 +133,6 @@ import Loadingbar from './elements/Loadingbar.vue'
 import { ref } from 'vue'
 import { useAuthStore } from '../store/authStore'
 import { supabase } from '../supabase'
-
 const auth = useAuthStore();
 const editingLink = ref(null);
 const links = ref([]);
@@ -174,6 +182,9 @@ function showEditForm(linkId) {
 function hideEditForm() {
   editingLink.value = null;
 }
+import SlideRightModal from './elements/SlideRightModal.vue';
+
+const showModal = ref(false);
 
 async function addLink(link) {
   let tmp = {
