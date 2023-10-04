@@ -4,6 +4,7 @@
         <div class="modal">
           <button @click="$emit('close')">Close</button>
           <p>This is a slide-right modal!</p>
+          <slot></slot>
         </div>
       </div>
     </transition>

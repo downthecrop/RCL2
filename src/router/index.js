@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '../store/authStore'
 import Home from '../components/Home.vue'
 import Login from '../components/Login.vue'
+import Landing from '../components/GenericHome.vue'
 import Public from '../components/Public.vue'
 
 const routes = [
@@ -17,6 +18,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/Landing',
+    name: 'Landing',
+    component: Landing
   },
   {
     path: '/u/:id',
