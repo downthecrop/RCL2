@@ -35,6 +35,8 @@
     "vue-router": "4"
   },
   "devDependencies": {
+    "@nuxtbase/auth-ui-vue": "^0.3.3",
+    "@supabase/auth-ui-shared": "^0.1.7",
     "@vitejs/plugin-vue": "^4.3.4",
     "@vitejs/plugin-vue-jsx": "^1.1.7",
     "autoprefixer": "^10.3.3",

@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { supabase } from '../supabase';
 import { useAuthStore } from '../store/authStore'
 import Home from '../components/Home.vue'
 import Login from '../components/Login.vue'
@@ -32,12 +31,13 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  if(!requiresAuth) next();
+  if(!requiresAuth) 
+    next();
   const auth = useAuthStore()
   const currentUser = auth.user;
   if (!currentUser) next('/login');
-  else if (!requiresAuth && currentUser && to.path === '/login') next('/');
   else next();
 });
+
 
 export default router
