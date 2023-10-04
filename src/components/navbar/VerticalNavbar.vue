@@ -16,9 +16,6 @@
 </template>
 
 <script>
-export default {
-  name: 'VerticalNavbar',
-}
 </script>
 
 <style scoped>
