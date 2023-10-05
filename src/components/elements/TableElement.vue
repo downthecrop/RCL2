@@ -18,11 +18,11 @@
                                 Created
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-300 uppercase">
+                                class="px-6 py-3 text-xs font-medium tracking-wider text-gray-300 uppercase">
                                 Private
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-300 uppercase">
+                                class="px-6 py-3 text-xs font-medium tracking-wider text-gray-300 uppercase">
                                 Actions
                             </th>
                         </tr>
@@ -58,7 +58,7 @@
                                     {{ formatDate(link.updated_at) }}
                                 </div>
                             </td>
-                            <td class="px-6 py-4 text-sm text-center font-medium whitespace-nowrap">
+                            <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
                                 <span v-if="editingLink === link.id">
                                     <input type="checkbox" v-model="link.is_private"
                                         class="form-checkbox h-5 w-5 text-blue-600">
@@ -75,7 +75,7 @@
                                 </span>
                             </td>
 
-                            <td class="px-6 py-4 text-center text-sm font-medium whitespace-nowrap">
+                            <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
                                 <a v-if="editingLink !== link.id" href="#" class="text-indigo-400 hover:text-indigo-500"
                                     @click="showEditForm(link.id)">
                                     Edit

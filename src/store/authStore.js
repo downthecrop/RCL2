@@ -39,6 +39,19 @@ export const useAuthStore = defineStore({
         return null;
       }
       return data || [];
+    },
+    async fetchAnonLinks(uuid) {
+      const { data, error } = await supabase
+        .from('anon_links')
+        .select('*')
+        .eq('user_id', uuid)
+        .order('created_at', { ascending: false });
+    
+      if (error) {
+        console.error("Error fetching links:", error);
+        return null;
+      }
+      return data || [];
     }
   }
 });

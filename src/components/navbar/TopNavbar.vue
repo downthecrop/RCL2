@@ -1,46 +1,42 @@
 <template>
-  <header class="sticky top-0 z-10 bg-gray-900 flex-shrink-0 border-b border-gray-700 transition-transform duration-500"
-    :class="{ '-translate-y-full': scrollingDown, '-translate-y-0': scrollingUp }">
-    <div class="flex items-center justify-between p-2">
-      <div class="flex items-center space-x-3">
-        <RouterLink to="/home" class="p-2 text-xl font-semibold tracking-wider text-white uppercase">
-          RCL2
-        </RouterLink>
+  <header class="sticky top-0 z-10 bg-gray-900 flex-shrink-0 border-b border-gray-700 transition-transform duration-500">
+    <div class="flex justify-center">
+      <div class="flex items-center justify-between max-w-screen-lg w-full">
+        <div class="flex items-center space-x-3">
+          <RouterLink to="/home" class="p-2 text-xl font-semibold tracking-wider text-white uppercase">
+            RCL2
+          </RouterLink>
+        </div>
+        <div class="flex-grow flex items-center justify-center">
+          <div class="p-2 text-xl font-semibold tracking-wider text-white uppercase">
+            <slot></slot>
+          </div>
+        </div>
+        <nav aria-label="Secondary" class="flex items-center space-x-3 flex-wrap">
+          <!-- Updated styles for PushLink button -->
+          <button class="bg-green-500 py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500"
+            @click="$emit('openModal')">
+            Open Modal
+          </button>
+
+          <!-- Updated styles for Login/Logout button -->
+          <button @click="() => signInOrOut(isLoggedIn)"
+            :class="(isLoggedIn ? 'bg-red-500' : 'bg-blue-500') + ' py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500'">
+            {{ isLoggedIn ? "Logout" : "Login" }}
+          </button>
+
+          <UserMenu />
+        </nav>
       </div>
-      <nav aria-label="Secondary" class="flex items-center space-x-3">
-
-        <button @click="openSearchPanel" class="p-2 rounded-md focus:outline-none focus:ring focus:ring-gray-500">
-          <SearchIcon aria-hidden="true" class="w-6 h-6 text-gray-300" />
-        </button>
-
-        <button @click="openNotificationsPanel" class="p-2 rounded-md focus:outline-none focus:ring focus:ring-gray-500">
-          <BellIcon aria-hidden="true" class="w-6 h-6 text-gray-300" />
-        </button>
-
-        <button @click="openSettingsPanel" class="p-2 rounded-md focus:outline-none focus:ring focus:ring-gray-500">
-          <CogIcon aria-hidden="true" class="w-6 h-6 text-gray-300" />
-        </button>
-
-        <button :class="'bg-green-500 p-2 rounded-md text-white focus:outline-none focus:ring focus:ring-gray-500'"
-          @click="addLink('https://downthecrop.xyz', false)">
-          PushLink
-        </button>
-
-        <button @click="() => signInOrOut(isLoggedIn)"
-          :class="(isLoggedIn ? 'bg-red-500' : 'bg-blue-500') + ' p-2 rounded-md text-white focus:outline-none focus:ring focus:ring-gray-500'">
-          {{ isLoggedIn ? "Logout" : "Login" }}
-        </button>
-        <UserMenu />
-      </nav>
     </div>
   </header>
 </template>
 
+
+
 <script setup>
 // Script remains the same
-import { defineComponent } from 'vue';
 import { RouterLink } from 'vue-router';
-import { ChevronDoubleRightIcon, SearchIcon, BellIcon, CogIcon } from '@heroicons/vue/outline';
 import { computed } from 'vue'
 import { useAuthStore } from '../../store/authStore'
 import { supabase } from '../../supabase';
