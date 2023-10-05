@@ -14,12 +14,6 @@
               <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
                 Title
               </th>
-              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
-                Status
-              </th>
-              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
-                Actions
-              </th>
             </tr>
           </thead>
           <tbody class="bg-gray-800 divide-y divide-gray-700">
@@ -38,14 +32,6 @@
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm font-medium text-gray-300">Regional Paradigm Technician</div>
                 <div class="text-sm text-gray-300">Optimization</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="text-sm font-medium text-gray-300">
-                  {{ link.active ? 'Active' : 'Not Active' }}
-                </span>
-              </td>
-              <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
-                <!-- You can populate the actions here -->
               </td>
             </tr>
           </tbody>

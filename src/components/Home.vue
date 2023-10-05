@@ -26,7 +26,7 @@
               </div>
               <div v-else>
                 <LinkEntry @addLink="addLink" />
-                <TableElement :links="links" @deleteLink="deleteLink" @updateLink="updateLink" />
+                <TableElement :links="links" @deleteLink="deleteLink" @updateLink="updateLink" ref="tableElementRef"/>
               </div>
             </Transition>
           </div>
@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { defineComponent, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import Sidebar from './navbar/VerticalNavbar.vue'
 import Navbar from './navbar/TopNavbar.vue'
 import Loadingbar from './elements/Loadingbar.vue'
@@ -47,11 +47,12 @@ import { supabase } from '../supabase'
 import TableElement from './elements/TableElement.vue';
 import LinkEntry from './elements/LinkEntry.vue';
 
+const username = ref("");
 const auth = useAuthStore();
 const links = ref([]);
 const showModal = ref(false);
 const loading = ref(true)
-
+const tableElementRef = ref(null);
 
 async function deleteLink(link) {
   console.log("Deleting link: ", link)
@@ -79,6 +80,11 @@ async function setUsername(username) {
 }
 
 
+function hideEditForm() {
+  if (tableElementRef.value) {
+    tableElementRef.value.hideEditForm();
+  }
+}
 
 async function addLink(link, description, isPrivate) {
   let tmp = {

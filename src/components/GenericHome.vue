@@ -1,53 +1,37 @@
 ﻿<template>
-    <div class="bg-gray-900 text-white min-h-screen flex flex-col">
-      <!-- Header -->
-      <header class="container mx-auto py-4 px-8 text-2xl font-bold">
-        RCL2
-      </header>
-  
-      <!-- Main Content -->
-      <main class="flex-grow container mx-auto p-8">
-        <!-- Image Section -->
-        <div class="flex justify-center items-center mb-8 h-64">
-          <img src="rcl.svg" alt="Your Logo" class="w-32 h-32">
+    <div class="header relative items-center flex h-screen max-h-860-px dark:bg-gray-900">
+        <div class="container mx-auto items-center flex flex-wrap bg-gray-900">
+            <div class="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
+                <div class="pt-32 sm:pt-0">
+                    <h2 class="font-semibold text-4xl text-white">
+                        RCL2 - A beautiful extension for Tailwind CSS.
+                    </h2>
+                    <p class="mt-4 text-lg leading-relaxed text-gray-400">
+                        Vue Notus is Free and Open Source. It does not change any of the CSS from
+                        <a href="https://tailwindcss.com/?ref=creativetim" class="text-blue-400 hover:text-blue-500" target="_blank">
+                            Tailwind CSS.
+                        </a>
+                        It features multiple HTML elements and it comes with dynamic components for ReactJS, Vue and Angular.
+                    </p>
+                    <div class="mt-12">
+                        <a href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus?ref=vn-index" target="_blank"
+                           class="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-gray-700 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Chrome Extension
+                        </a>
+                        <a href="https://github.com/creativetimofficial/vue-notus?ref=vn-index" target="_blank"
+                           class="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-gray-700 active:bg-gray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
+                            Github
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-  
-        <!-- Text Section -->
-        <div class="text-center mb-8">
-          <h1 class="text-3xl font-semibold">Building the Future</h1>
-          <p class="text-lg mt-2">One feature at a time.</p>
-        </div>
-  
-        <!-- Features Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="feature-box">
-            <h2 class="text-xl font-bold">Feature 1</h2>
-            <p>Information about feature 1...</p>
-          </div>
-          <div class="feature-box">
-            <h2 class="text-xl font-bold">Feature 2</h2>
-            <p>Information about feature 2...</p>
-          </div>
-          <div class="feature-box">
-            <h2 class="text-xl font-bold">Feature 3</h2>
-            <p>Information about feature 3...</p>
-          </div>
-        </div>
-      </main>
-  
-      <!-- Footer -->
-      <footer class="container mx-auto py-4 px-8 text-center text-sm">
-        © 2023 Your Startup WebApp
-      </footer>
+        <img class="absolute top-0 b-auto right-0 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px"
+             src="https://demos.creative-tim.com/vue-notus/img/pattern_vue.723fd347.png"
+             alt="..." />
     </div>
-  </template>
-  
-  <style scoped>
-  .feature-box {
-    padding: 1.5rem;
-    background-color: #2d2d2d;
-    border-radius: 0.5rem;
-    border: 1px solid #4a4a4a;
-  }
-  </style>
-  
+</template>
+
+
+<style scoped>
+</style>
