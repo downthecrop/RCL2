@@ -1,36 +1,66 @@
 ﻿<template>
-    <div class="grid place-items-center">
-        <div class="wrapper flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-            <div class="inputfield w-full">
+    <div class="grid place-items-center bg-gray-900 p-4">
+        <div class="wrapper flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-0">
+            <div class="inputfield w-full bg-gray-700 rounded flex items-center h-12">
                 <input v-model="inputData" placeholder="Submit A new link"
-                    class="p-2 w-full bg-gray-800 text-white rounded" />
-            </div>
-            <div class="w-full md:w-auto">
-                <select v-model="description" class="p-2 w-full md:w-auto bg-gray-800 text-white rounded">
-                    <option disabled value="">Select description</option>
-                    <option>Important</option>
-                    <option>Optional</option>
-                    <option>Urgent</option>
-                </select>
-            </div>
-            <div class="grid place-items-center w-full md:w-auto">
-                <input type="checkbox" id="private" v-model="isPrivate" class="form-checkbox h-5 w-5 text-blue-600">
-            </div>
-            <div class="w-full md:w-auto">
-                <button @click="$emit('addLink', inputData, description, isPrivate)"
-                    class="w-full md:w-auto px-4 py-2 bg-blue-500 text-white rounded">
-                    Submit
-                </button>
+                    class="p-2 w-full text-gray-300 bg-gray-800 rounded-l focus:outline-none h-full" />
+                <div class="hidden md:flex items-center h-full" v-if="showDescription">
+                    <input v-model="description" class="p-2 w-full text-gray-300 bg-gray-800 focus:outline-none h-full"
+                        placeholder="Description">
+                </div>
+                <div class="flex items-center h-full">
+                    <button @click="toggleDescription" class="text-gray-300 bg-gray-800 px-2 py-1 focus:outline-none h-full">
+                        {{ showDescription ? '^' : 'v' }}
+                    </button>
+                    <button @click="togglePrivate" :class="isPrivate ? 'bg-red-600' : 'bg-green-600'"
+                        class="text-gray-300 px-2 py-1 focus:outline-none h-full">
+                        {{ isPrivate ? 'Private' : 'Public' }}
+                    </button>
+                    <button @click="submitData" class="bg-blue-600 text-gray-300 rounded-r px-2 py-1 focus:outline-none h-full">
+                        Submit
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </template>
-  
+
 <script setup>
 import { ref } from 'vue'
 const emit = defineEmits(['addLink'])
 const isPrivate = ref(false)
 const inputData = ref("")
 const description = ref("")
+const showDescription = ref(false)
+
+const submitData = () => {
+    emit('addLink', inputData.value, description.value, isPrivate.value)
+}
+
+const toggleDescription = () => {
+    showDescription.value = !showDescription.value
+}
+
+const togglePrivate = () => {
+    isPrivate.value = !isPrivate.value
+}
 </script>
-<style></style>
+
+<style scoped>
+/* Eliminating borders and rounded corners from individual elements */
+input {
+    border: none !important;
+}
+
+/* Rounded corners only for the outermost element */
+.inputfield {
+    border-radius: 0.25rem;
+    height: 2.5rem;  /* Set a height for the outer input field */
+}
+
+/* Removing rounded corners from all buttons and input fields */
+button, input {
+    border-radius: 0;
+    height: 100%;  /* Make buttons and inputs take full height */
+}
+</style>

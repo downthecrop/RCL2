@@ -12,7 +12,6 @@
           </div>
         </div>
       </SlideRightModal>
-      <Sidebar />
       <div class="flex max-w-full flex-col flex-1">
         <Navbar />
         <div class="flex-1">

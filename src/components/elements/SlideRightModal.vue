@@ -1,7 +1,7 @@
 ﻿<template>
     <transition name="slide-right">
       <div v-show="show" class="modal-wrapper">
-        <div class="modal">
+        <div class="modal text-gray-300 bg-gray-900">
           <button @click="$emit('close')">Close</button>
           <p>This is a slide-right modal!</p>
           <slot></slot>
@@ -42,7 +42,6 @@
   }
   
   .modal {
-    background: white;
     margin-top: 100px;
     padding: 20px;
     width: 300px;
