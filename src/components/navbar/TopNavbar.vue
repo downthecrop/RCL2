@@ -13,6 +13,10 @@
           </div>
         </div>
         <nav aria-label="Secondary" class="flex items-center space-x-3 flex-wrap">
+          <button @click="() => router.push('/u/downthecrop')"
+            class="py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500">
+            <font-awesome-icon icon="user"></font-awesome-icon>
+          </button>
           <!-- Updated styles for PushLink button -->
           <button class="bg-green-500 py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500"
             @click="$emit('openModal')">
@@ -23,7 +27,6 @@
             :class="(isLoggedIn ? 'bg-red-500' : 'bg-blue-500') + ' py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500'">
             <font-awesome-icon :icon="isLoggedIn ? 'sign-out-alt' : 'sign-in-alt'"></font-awesome-icon>
           </button>
-          <UserMenu />
         </nav>
       </div>
     </div>
@@ -40,10 +43,10 @@ import { useAuthStore } from '../../store/authStore'
 import { supabase } from '../../supabase';
 import router from '../../router/index.js'
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCog, faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faSignOutAlt, faSignInAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faCog, faSignOutAlt, faSignInAlt);
+library.add(faCog, faSignOutAlt, faSignInAlt, faUser);
 
 const signInOrOut = (isLoggedIn) => {
   if (isLoggedIn) { signOut() } else { signIn() }

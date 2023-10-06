@@ -72,7 +72,13 @@ async function deleteLink(link) {
   const currentTable = myToggle.value ? "anon_links" : "user_links";
   const { error } = await supabase.from(currentTable).delete().eq('id', link.id);
   error ? console.error('Error deleting link:', error) : auth.fetchUserLinks(auth.user.id);
-  links.value = await auth.fetchUserLinks(auth.user.id);
+  if(myToggle.value) {
+    links.value = await auth.fetchAnonLinks(auth.user.id);
+    anonLinksCache = links.value
+  }
+  else
+    links.value = await auth.fetchUserLinks(auth.user.id);
+  
   hideEditForm();
 }
 

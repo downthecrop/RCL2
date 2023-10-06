@@ -10,6 +10,9 @@
         <div
           class="flex pt-16 flex-col items-center justify-start min-h-screen p-4 space-y-4 antialiased text-gray-300 bg-gray-900">
           <div>
+            <div class="flex items-center justify-center">
+      <img :src="identicon" width="42" height="42" class="rounded-full">
+    </div><br>
             {{ status }}
           </div>
           <div class="relative w-48 h-8 rounded-full bg-gray-900 border-2 border-gray-700">
@@ -79,13 +82,35 @@
 </template>
 <script setup>
 import { onMounted, ref } from 'vue'
+import Identicon from 'identicon.js';
 import { useRoute } from 'vue-router'
 import { useAuthStore } from '../store/authStore'
 import LinkEntry from './elements/LinkEntry.vue';
 import { supabase } from '../supabase'
 import Loadingbar from './elements/Loadingbar.vue'
+import seedrandom from 'seedrandom';
+
+// Predefined array of good-looking colors
+const goodColors = [
+  [255, 87, 34, 255], // rgba orange
+  [33, 150, 243, 255], // rgba blue
+  [76, 175, 80, 255], // rgba green
+  [244, 67, 54, 255]  // rgba red
+];
 
 
+const hash = 'downthecro11111232p1231111';
+const rng = seedrandom(hash);
+const randomIndex = Math.floor(rng() * goodColors.length);
+const selectedColor = goodColors[randomIndex];
+
+const options = {
+  foreground: selectedColor, // rgba black
+  background: [255, 255, 255, 255], // rgba white
+  margin: 0.1,  // 10% margin
+  size: 420 // 420x420 pixels
+};
+const identicon = "data:image/png;base64," + new Identicon(hash, options).toString();
 const router = useRoute();
 let links = ref([])
 let loading = ref(true);
@@ -113,13 +138,13 @@ async function toggleTable() {
 }
 
 function formatDate(timestamp) {
-    const d = new Date(timestamp);
-    const month = d.toDateString().split(' ')[1];
-    const day = d.getDate(), year = d.getFullYear();
-    let hour = d.getHours(), min = d.getMinutes();
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    hour = hour % 12 || 12;
-    return `${month} ${day} ${year} - ${hour}:${min < 10 ? '0' + min : min} ${ampm}`;
+  const d = new Date(timestamp);
+  const month = d.toDateString().split(' ')[1];
+  const day = d.getDate(), year = d.getFullYear();
+  let hour = d.getHours(), min = d.getMinutes();
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+  hour = hour % 12 || 12;
+  return `${month} ${day} ${year} - ${hour}:${min < 10 ? '0' + min : min} ${ampm}`;
 }
 
 async function addLink(link, description) {
@@ -164,13 +189,25 @@ onMounted(async () => {
   /* or any height you prefer */
 }
 
+#avatar {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.box {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.1s;
 }
 
 .fade-enter,
-.fade-leave-to{
+.fade-leave-to {
   opacity: 0;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center justify-center min-h-screen p-4 space-y-4 antialiased text-white bg-gray-800">
     <div class="w-full max-w-md">
       <Auth :supabaseClient="supabase" :providers="['twitch', 'github', 'google']"
-        :appearance="appearance" onlyThirdPartyProviders />
+        :appearance="appearance" onlyThirdPartyProviders theme="dark"/>
     </div>
   </div>
 </template>
