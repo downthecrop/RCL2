@@ -16,15 +16,13 @@
           <!-- Updated styles for PushLink button -->
           <button class="bg-green-500 py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500"
             @click="$emit('openModal')">
-            Open Modal
+            <font-awesome-icon icon="cog"></font-awesome-icon> 
           </button>
-
           <!-- Updated styles for Login/Logout button -->
           <button @click="() => signInOrOut(isLoggedIn)"
             :class="(isLoggedIn ? 'bg-red-500' : 'bg-blue-500') + ' py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500'">
-            {{ isLoggedIn ? "Logout" : "Login" }}
+            <font-awesome-icon :icon="isLoggedIn ? 'sign-out-alt' : 'sign-in-alt'"></font-awesome-icon>
           </button>
-
           <UserMenu />
         </nav>
       </div>
@@ -41,44 +39,15 @@ import { computed } from 'vue'
 import { useAuthStore } from '../../store/authStore'
 import { supabase } from '../../supabase';
 import router from '../../router/index.js'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCog, faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-async function addLink(url, isPrivate) {
-  const user = auth.user;
-  url = genLink()
-  if (user) {
-    const { data, error } = await supabase
-      .from('user_links')
-      .insert([
-        { user_id: user.id, link_url: url, link_name: url, is_private: isPrivate }
-      ]);
-
-    if (error) {
-      console.error("Error inserting link:", error);
-      return null;
-    }
-
-    return data;
-  } else {
-    console.error("User is not authenticated.");
-    return null;
-  }
-}
+library.add(faCog, faSignOutAlt, faSignInAlt);
 
 const signInOrOut = (isLoggedIn) => {
   if (isLoggedIn) { signOut() } else { signIn() }
 }
-
-const genLink = () => {
-  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let randomString = '';
-
-  for (let i = 0; i < 16; i++) {
-    const randomIndex = Math.floor(Math.random() * chars.length);
-    randomString += chars[randomIndex];
-  }
-  return `https://${randomString}.com`;
-}
-
 const auth = useAuthStore()
 const isLoggedIn = computed(() => auth.user !== null)
 

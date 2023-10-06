@@ -2,7 +2,7 @@
     <div class="responsive-table">
         <main class="p-5">
             <div class="min-h-full mt-6 overflow-hidden overflow-x-auto border border-gray-700 rounded-md mx-auto" style="max-width: 1200px;">
-                <table class="w-full divide-y divide-gray-800">
+                <table class="w-full divide-y divide-gray-800" v-if="links.length > 0">
                     <thead class="bg-gray-700">
                         <tr>
                             <th scope="col" data-label="URL"
@@ -91,6 +91,12 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="flex flex-col items-center justify-center p-4 text-gray-300" v-else>
+                <font-awesome-icon icon="globe-asia" class="text-2xl"></font-awesome-icon>
+                <font-awesome-icon icon="times" class="absolute text-red-500"
+                  style="font-size: 0.5em; top: 50%; left: 50%; transform: translate(-50%, -50%);"></font-awesome-icon>
+                <div class="mt-2 text-lg">There are no links to display</div>
+              </div>
             </div>
         </main>
     </div>

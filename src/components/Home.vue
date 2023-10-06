@@ -36,7 +36,7 @@
                   </div>
                   <div @click="toggleTable"
                     class="absolute top-0 right-0 w-1/2 h-full flex items-center justify-center cursor-pointer text-gray-300">
-                    Anonymous
+                    Anon
                   </div>
                 </div>
               </div>

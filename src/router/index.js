@@ -36,6 +36,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  document.title = "RCL2 - " + to.name;
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   if(!requiresAuth) 
     next();

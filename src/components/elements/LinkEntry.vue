@@ -11,16 +11,17 @@
                 </div>
                 <div class="flex items-center h-full">
                     <button @click="toggleDescription"
-                        class="text-gray-300 bg-gray-900 px-2 py-0.5 focus:outline-none h-8 text-sm">
-                        {{ showDescription ? '^' : 'v' }}
+                        class="text-gray-300 bg-gray-900 px-2 py-0.5 focus:outline-none text-sm">
+                        <font-awesome-icon
+                            :icon="['fas', showDescription ? 'chevron-up' : 'chevron-down']"></font-awesome-icon>
                     </button>
                     <button @click="togglePrivate" :class="isPrivate ? 'bg-yellow-500' : 'bg-indigo-600'"
-                        class="text-gray-300 px-2 py-0.5 focus:outline-none h-8 text-sm">
-                        {{ isPrivate ? 'Private' : 'Public' }}
+                        class="text-gray-300 px-2 py-0.5 focus:outline-none text-sm">
+                        <font-awesome-icon :icon="['fas', isPrivate ? 'lock' : 'unlock']"></font-awesome-icon>
                     </button>
                     <button @click="submitData"
-                        class="bg-green-500 text-gray-300 rounded-r px-2 py-0.5 focus:outline-none h-8 text-sm">
-                        Submit
+                        class="bg-green-500 text-gray-300 rounded-r px-2 py-0.5 focus:outline-none text-sm">
+                        <font-awesome-icon icon="paper-plane"></font-awesome-icon>
                     </button>
                 </div>
             </div>
@@ -29,6 +30,10 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faChevronDown, faChevronUp, faLock, faUnlock, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+library.add(faChevronDown, faChevronUp, faLock, faUnlock, faPaperPlane);
 const emit = defineEmits(['addLink'])
 const isPrivate = ref(false)
 const inputData = ref("")
@@ -63,5 +68,4 @@ input {
 input {
     border-radius: 0;
     height: 100%;
-}
-</style>
+}</style>
