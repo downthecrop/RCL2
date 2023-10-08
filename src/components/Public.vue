@@ -12,8 +12,11 @@
           <div>
             <div class="flex items-center justify-center">
       <img :src="identicon" width="42" height="42" class="rounded-full">
-    </div><br>
-            {{ status }}
+    </div>
+    <div class="flex items-center pt-4 justify-center">
+      {{ status }}
+    </div>
+            
           </div>
           <div class="relative w-48 h-8 rounded-full bg-gray-900 border-2 border-gray-700">
             <div :class="myToggle ? 'translate-x-full' : 'translate-x-0'"

@@ -15,12 +15,12 @@
                         <font-awesome-icon
                             :icon="['fas', showDescription ? 'chevron-up' : 'chevron-down']"></font-awesome-icon>
                     </button>
-                    <button @click="togglePrivate" :class="isPrivate ? 'bg-yellow-500' : 'bg-indigo-600'"
-                        class="text-gray-300 px-2 py-0.5 focus:outline-none text-sm">
+                    <button @click="togglePrivate" :class="isPrivate ? 'border-pink-500' : 'border-blue-500'"
+                        class="border text-gray-300 px-2 py-0.5 focus:outline-none text-sm">
                         <font-awesome-icon :icon="['fas', isPrivate ? 'lock' : 'unlock']"></font-awesome-icon>
                     </button>
                     <button @click="submitData"
-                        class="bg-green-500 text-gray-300 rounded-r px-2 py-0.5 focus:outline-none text-sm">
+                        class="border border-green-400 text-gray-300 rounded-r px-2 py-0.5 focus:outline-none text-sm">
                         <font-awesome-icon icon="paper-plane"></font-awesome-icon>
                     </button>
                 </div>

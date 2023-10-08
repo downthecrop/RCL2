@@ -1,7 +1,8 @@
 ﻿<template>
     <div class="responsive-table">
         <main class="p-5">
-            <div class="min-h-full mt-6 overflow-hidden overflow-x-auto border border-gray-700 rounded-md mx-auto" style="max-width: 1200px;">
+            <div class="min-h-full mt-6 overflow-hidden overflow-x-auto border border-gray-700 rounded-md mx-auto"
+                style="max-width: 1200px;">
                 <table class="w-full divide-y divide-gray-800" v-if="links.length > 0">
                     <thead class="bg-gray-700">
                         <tr>
@@ -9,20 +10,14 @@
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
                                 URL
                             </th>
-                            <th scope="col" data-label="Link Title"
-                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
-                                Link Title
-                            </th>
                             <th scope="col"
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
                                 Created
                             </th>
-                            <th scope="col"
-                                class="px-6 py-3 text-xs font-medium tracking-wider text-gray-300 uppercase">
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-gray-300 uppercase">
                                 Private
                             </th>
-                            <th scope="col"
-                                class="px-6 py-3 text-xs font-medium tracking-wider text-gray-300 uppercase">
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-gray-300 uppercase">
                                 Actions
                             </th>
                         </tr>
@@ -37,20 +32,14 @@
                                     </div>
                                     <div v-if="editingLink !== link.id" class="ml-4">
                                         <div class="text-sm font-medium text-gray-300">{{ link.link_url }}</div>
+                                        <div class="text-sm font-small text-gray-300">{{ link.link_name }}</div>
                                     </div>
                                     <div v-else class="ml-4">
                                         <input v-model="link.link_url" type="text"
+                                            class="p-2 w-full bg-gray-900 text-white rounded"><br>
+                                        <input v-model="link.link_name" type="text"
                                             class="p-2 w-full bg-gray-900 text-white rounded">
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div v-if="editingLink !== link.id" class="text-sm text-gray-300">
-                                    {{ link.link_name }}
-                                </div>
-                                <div v-else>
-                                    <input v-model="link.link_name" type="text"
-                                        class="p-2 w-full bg-gray-900 text-white rounded">
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
@@ -92,11 +81,11 @@
                     </tbody>
                 </table>
                 <div class="flex flex-col items-center justify-center p-4 text-gray-300" v-else>
-                <font-awesome-icon icon="globe-asia" class="text-2xl"></font-awesome-icon>
-                <font-awesome-icon icon="times" class="absolute text-red-500"
-                  style="font-size: 0.5em; top: 50%; left: 50%; transform: translate(-50%, -50%);"></font-awesome-icon>
-                <div class="mt-2 text-lg">There are no links to display</div>
-              </div>
+                    <font-awesome-icon icon="globe-asia" class="text-2xl"></font-awesome-icon>
+                    <font-awesome-icon icon="times" class="absolute text-red-500"
+                        style="font-size: 0.5em; top: 50%; left: 50%; transform: translate(-50%, -50%);"></font-awesome-icon>
+                    <div class="mt-2 text-lg">There are no links to display</div>
+                </div>
             </div>
         </main>
     </div>
@@ -176,5 +165,4 @@ defineExpose({
     .responsive-table td:first-child::before {
         @apply mt-2;
     }
-}
-</style>
+}</style>

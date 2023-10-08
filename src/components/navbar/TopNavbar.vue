@@ -18,14 +18,14 @@
             <font-awesome-icon icon="user"></font-awesome-icon>
           </button>
           <!-- Updated styles for PushLink button -->
-          <button class="bg-green-500 py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500"
+          <button class="py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500"
             @click="$emit('openModal')">
             <font-awesome-icon icon="cog"></font-awesome-icon> 
           </button>
           <!-- Updated styles for Login/Logout button -->
-          <button @click="() => signInOrOut(isLoggedIn)"
-            :class="(isLoggedIn ? 'bg-red-500' : 'bg-blue-500') + ' py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500'">
-            <font-awesome-icon :icon="isLoggedIn ? 'sign-out-alt' : 'sign-in-alt'"></font-awesome-icon>
+          <button @click="signOut"
+            class="border border-gray-400 py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500">
+            <font-awesome-icon icon="sign-out-alt"></font-awesome-icon>
           </button>
         </nav>
       </div>
