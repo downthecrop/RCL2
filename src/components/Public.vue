@@ -60,8 +60,8 @@
                               alt="" />
                           </div>
                         </div>
-                        <div class="ml-4">
-                          <div class="text-sm font-medium text-gray-300">{{ link.link_url }}</div>
+                        <div class="ml-4" style="max-width: 380px;">
+                          <a :href="link.link_url"><div class="text-sm font-medium text-gray-300 truncate">{{ link.link_url }}</div></a>
                           <div class="text-sm text-gray-300">{{ link.link_name }}</div>
                         </div>
                       </div>
