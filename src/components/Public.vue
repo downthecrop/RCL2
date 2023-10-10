@@ -11,12 +11,12 @@
           class="flex pt-16 flex-col items-center justify-start min-h-screen p-4 space-y-4 antialiased text-gray-300 bg-gray-900">
           <div>
             <div class="flex items-center justify-center">
-      <img :src="identicon" width="42" height="42" class="rounded-full">
-    </div>
-    <div class="flex items-center pt-4 justify-center">
-      {{ status }}
-    </div>
-            
+              <img :src="identicon" width="42" height="42" class="rounded-full">
+            </div>
+            <div class="flex items-center pt-4 justify-center">
+              {{ status }}
+            </div>
+
           </div>
           <div class="relative w-48 h-8 rounded-full bg-gray-900 border-2 border-gray-700">
             <div :class="myToggle ? 'translate-x-full' : 'translate-x-0'"
@@ -53,9 +53,12 @@
                   <tr v-for="link in links" :key="link.id" class="transition-all hover:bg-gray-700">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
-                        <div class="flex-shrink-0 w-10 h-10">
-                          <img class="w-10 h-10 rounded-full" src="https://downthecrop.github.io/downthecrop.png"
-                            alt="" />
+                        <div class="flex-shrink-0 w-10 h-10 center-dot">
+                          <div class="dot">
+                            <img class=""
+                              :src="'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=' + link.link_url"
+                              alt="" />
+                          </div>
                         </div>
                         <div class="ml-4">
                           <div class="text-sm font-medium text-gray-300">{{ link.link_url }}</div>

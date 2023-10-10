@@ -23,12 +23,16 @@
                         </tr>
                     </thead>
                     <transition-group name="fade" tag="tbody" class="bg-gray-900 divide-y divide-gray-700">
-                        <tr v-for="link in links" :key="link.id" class="transition-all transition-height duration-500 ease-in-out hover:bg-gray-700">
+                        <tr v-for="link in links" :key="link.id"
+                            class="transition-all transition-height duration-500 ease-in-out hover:bg-gray-700">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <div class="flex-shrink-0 w-10 h-10">
-                                        <img class="w-10 h-10 rounded-full"
-                                            src='https://downthecrop.github.io/downthecrop.png' alt="" />
+                                    <div class="flex-shrink-0 w-10 h-10 center-dot">
+                                        <div class="dot">
+                                            <img class=""
+                                                :src="'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=' + link.link_url"
+                                                alt="" />
+                                        </div>
                                     </div>
                                     <div v-if="editingLink !== link.id" class="ml-4">
                                         <div class="text-sm font-medium text-gray-300">{{ link.link_url }}</div>
@@ -44,24 +48,26 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-300">
-                                    {{ formatDate(link.updated_at) }}
+                                    {{ link.updated_at ? formatDate(link.updated_at) : formatDate(link.created_at) }}
                                 </div>
                             </td>
                             <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
-                                <span v-if="editingLink === link.id">
-                                    <input type="checkbox" v-model="link.is_private"
-                                        class="form-checkbox h-5 w-5 text-blue-600">
-                                </span>
-                                <span v-else>
-                                    <span v-if="link.is_private"
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-400 text-green-800">
-                                        Yes
+                                <div v-if="link.is_private != null">
+                                    <span v-if="editingLink === link.id">
+                                        <input type="checkbox" v-model="link.is_private"
+                                            class="form-checkbox h-5 w-5 text-blue-600">
                                     </span>
-                                    <span v-else
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-400 text-red-800">
-                                        No
+                                    <span v-else>
+                                        <span v-if="link.is_private"
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-400 text-green-800">
+                                            Yes
+                                        </span>
+                                        <span v-else
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-400 text-red-800">
+                                            No
+                                        </span>
                                     </span>
-                                </span>
+                                </div>
                             </td>
 
                             <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
@@ -125,17 +131,32 @@ defineExpose({
 
 </script>
 <style scoped>
+.dot {
+    border-radius: 50%;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    z-index: 1;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .responsive-table table {
     @apply w-full;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.1s, height 0.1s;
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.1s, height 0.1s;
 }
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-  height: 0px;
-  overflow: hidden;
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+    height: 0px;
+    overflow: hidden;
 }
 
 /* Custom responsive styles */

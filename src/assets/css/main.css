@@ -20,6 +20,24 @@
   }
 }
 
+.dot {
+  border-radius: 50%;
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  z-index: 1;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
