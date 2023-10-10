@@ -4,7 +4,7 @@
             <div class="min-h-full mt-6 overflow-hidden overflow-x-auto border border-gray-700 rounded-md mx-auto"
                 style="max-width: 1200px;">
                 <table class="w-full divide-y divide-gray-800" v-if="links.length > 0">
-                    <thead class="bg-gray-700">
+                    <thead class="bg-gray-800">
                         <tr>
                             <th scope="col" data-label="URL"
                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-300 uppercase">
@@ -22,7 +22,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <transition-group name="fade" tag="tbody" class="bg-gray-800 divide-y divide-gray-700">
+                    <transition-group name="fade" tag="tbody" class="bg-gray-900 divide-y divide-gray-700">
                         <tr v-for="link in links" :key="link.id" class="transition-all transition-height duration-500 ease-in-out hover:bg-gray-700">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">

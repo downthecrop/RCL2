@@ -49,7 +49,7 @@
                     </th>
                   </tr>
                 </thead>
-                <transition-group name="fade" tag="tbody" class="bg-gray-800 divide-y divide-gray-700">
+                <transition-group name="fade" tag="tbody" class="bg-gray-950 divide-y divide-gray-700">
                   <tr v-for="link in links" :key="link.id" class="transition-all hover:bg-gray-700">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
