@@ -22,8 +22,8 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="bg-gray-800 divide-y divide-gray-700">
-                        <tr v-for="link in links" :key="link.id" class="transition-all hover:bg-gray-700">
+                    <transition-group name="fade" tag="tbody" class="bg-gray-800 divide-y divide-gray-700">
+                        <tr v-for="link in links" :key="link.id" class="transition-all transition-height duration-500 ease-in-out hover:bg-gray-700">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 w-10 h-10">
@@ -78,7 +78,7 @@
                                 </div>
                             </td>
                         </tr>
-                    </tbody>
+                    </transition-group>
                 </table>
                 <div class="flex flex-col items-center justify-center p-4 text-gray-300" v-else>
                     <font-awesome-icon icon="globe-asia" class="text-2xl"></font-awesome-icon>
@@ -119,16 +119,23 @@ function hideEditForm() {
 }
 
 
-
 defineExpose({
     hideEditForm
 })
-
 
 </script>
 <style scoped>
 .responsive-table table {
     @apply w-full;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.1s, height 0.1s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+  height: 0px;
+  overflow: hidden;
 }
 
 /* Custom responsive styles */

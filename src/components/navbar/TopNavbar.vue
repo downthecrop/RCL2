@@ -13,7 +13,7 @@
           </div>
         </div>
         <nav aria-label="Secondary" class="flex items-center space-x-3 flex-wrap">
-          <button @click="() => router.push('/u/downthecrop')"
+          <button @click="goToUserProfile"
             class="py-1 px-3 rounded-md text-white text-sm focus:outline-none focus:ring focus:ring-gray-500">
             <font-awesome-icon icon="user"></font-awesome-icon>
           </button>
@@ -47,21 +47,16 @@ import { faCog, faSignOutAlt, faSignInAlt, faUser } from '@fortawesome/free-soli
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(faCog, faSignOutAlt, faSignInAlt, faUser);
-
-const signInOrOut = (isLoggedIn) => {
-  if (isLoggedIn) { signOut() } else { signIn() }
-}
 const auth = useAuthStore()
-const isLoggedIn = computed(() => auth.user !== null)
+async function goToUserProfile(){
+  const username = await auth.fetchUsernameCurrentUser();
+  router.push('/u/'+username)
+}
 
 async function signOut() {
   const auth = useAuthStore()
   await supabase.auth.signOut();
   auth.setUser(null)
-  router.push({ path: '/login', replace: true })
-}
-
-function signIn() {
   router.push({ path: '/login', replace: true })
 }
 </script>

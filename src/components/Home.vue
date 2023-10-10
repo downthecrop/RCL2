@@ -1,20 +1,23 @@
 <template>
   <div class="max-w-[100vw] flex min-h-screen antialiased text-gray-300 bg-gray-900">
     <SlideRightModal :show="showModal" @close="showModal = false">
-      <div class="wrapper flex mt-4">
-        <div class="inputfield">
-          <input v-model="username" placeholder="What's my new name?!"
-            class="p-2 w-full bg-gray-800 text-white rounded" />
-        </div>
-        <div class="ml-4">
-          <button @click="() => setUsername(username)"
-            class="px-4 py-2 bg-blue-500 text-white rounded">Setusername</button>
+      <div>
+        Change your username: If you'd like to change your public profile page you can do that here
+        <div class="wrapper flex mt-4">
+          <div class="inputfield">
+            <input v-model="username" placeholder="What's my new name?!"
+              class="p-2 w-full bg-gray-800 text-white rounded" />
+          </div>
+          <div class="ml-4">
+            <button @click="() => setUsername(username)"
+              class="px-4 py-2 bg-blue-500 text-white rounded">Setusername</button>
+          </div>
         </div>
       </div>
     </SlideRightModal>
     <div class="flex max-w-full flex-col flex-1">
       <Navbar @openModal="showModal = !showModal">
-        <LinkEntry @addLink="addLink" />
+        <LinkEntry @addLink="addLink" :showToggles="true"/>
       </Navbar>
       <div class="flex-1">
         <div>
@@ -72,13 +75,13 @@ async function deleteLink(link) {
   const currentTable = myToggle.value ? "anon_links" : "user_links";
   const { error } = await supabase.from(currentTable).delete().eq('id', link.id);
   error ? console.error('Error deleting link:', error) : auth.fetchUserLinks(auth.user.id);
-  if(myToggle.value) {
+  if (myToggle.value) {
     links.value = await auth.fetchAnonLinks(auth.user.id);
     anonLinksCache = links.value
   }
   else
     links.value = await auth.fetchUserLinks(auth.user.id);
-  
+
   hideEditForm();
 }
 
@@ -162,5 +165,4 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

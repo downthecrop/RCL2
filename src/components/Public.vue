@@ -49,7 +49,7 @@
                     </th>
                   </tr>
                 </thead>
-                <tbody class="bg-gray-800 divide-y divide-gray-700">
+                <transition-group name="fade" tag="tbody" class="bg-gray-800 divide-y divide-gray-700">
                   <tr v-for="link in links" :key="link.id" class="transition-all hover:bg-gray-700">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
@@ -68,7 +68,7 @@
                         {{ formatDate(link.created_at) }}</div>
                     </td>
                   </tr>
-                </tbody>
+                </transition-group>
               </table>
               <div class="flex flex-col items-center justify-center p-4 text-gray-300" v-else>
                 <font-awesome-icon icon="globe-asia" class="text-2xl"></font-awesome-icon>
@@ -102,18 +102,6 @@ const goodColors = [
 ];
 
 
-const hash = 'downthecro11111232p1231111';
-const rng = seedrandom(hash);
-const randomIndex = Math.floor(rng() * goodColors.length);
-const selectedColor = goodColors[randomIndex];
-
-const options = {
-  foreground: selectedColor, // rgba black
-  background: [255, 255, 255, 255], // rgba white
-  margin: 0.1,  // 10% margin
-  size: 420 // 420x420 pixels
-};
-const identicon = "data:image/png;base64," + new Identicon(hash, options).toString();
 const router = useRoute();
 let links = ref([])
 let loading = ref(true);
@@ -124,6 +112,21 @@ const auth = useAuthStore()
 const uuid = ref(null)
 let anonLinksCache = null;
 let myToggle = ref(false);
+
+
+const hash = String(router.params.id).padStart(15, '*');
+const rng = seedrandom(hash);
+const randomIndex = Math.floor(rng() * goodColors.length);
+const selectedColor = goodColors[randomIndex];
+
+const options = {
+  foreground: selectedColor, // rgba black
+  background: [255, 255, 255, 255], // rgba white
+  margin: 0.1,  // 10% margin
+  size: 420 // 420x420 pixels
+};
+
+const identicon = "data:image/png;base64," + new Identicon(hash, options).toString();
 
 async function toggleTable() {
   myToggle.value = !myToggle.value;
@@ -162,7 +165,8 @@ async function addLink(link, description) {
     console.error('Error updating link:', error);
     return;
   }
-  links.value = await auth.fetchUserLinks(auth.user.id);
+  links.value = await auth.fetchAnonLinks(uuid.value);
+  anonLinksCache = links.value;
 }
 
 onMounted(async () => {

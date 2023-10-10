@@ -4,19 +4,19 @@
             <div class="inputfield w-full rounded flex items-center h-10">
                 <input v-model="inputData" placeholder="Submit A new link"
                     class="p-2 w-full text-gray-300 bg-gray-900 focus:outline-none h-full text-sm" />
-                <div class="hidden md:flex items-center h-full" v-if="showDescription">
+                <div class="hidden md:flex items-center h-full" v-if="showDescription && showToggles">
                     <input v-model="description"
                         class="p-2 w-full text-gray-300 bg-gray-900 focus:outline-none h-full text-sm"
                         placeholder="Description">
                 </div>
                 <div class="flex items-center h-full">
                     <button @click="toggleDescription"
-                        class="text-gray-300 bg-gray-900 px-2 py-0.5 focus:outline-none text-sm">
+                        class="text-gray-300 bg-gray-900 px-2 py-0.5 focus:outline-none text-sm" v-if="showToggles">
                         <font-awesome-icon
                             :icon="['fas', showDescription ? 'chevron-up' : 'chevron-down']"></font-awesome-icon>
                     </button>
                     <button @click="togglePrivate" :class="isPrivate ? 'border-pink-500' : 'border-blue-500'"
-                        class="border text-gray-300 px-2 py-0.5 focus:outline-none text-sm">
+                        class="border text-gray-300 px-2 py-0.5 focus:outline-none text-sm" v-if="showToggles">
                         <font-awesome-icon :icon="['fas', isPrivate ? 'lock' : 'unlock']"></font-awesome-icon>
                     </button>
                     <button @click="submitData"
@@ -29,12 +29,13 @@
     </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faChevronDown, faChevronUp, faLock, faUnlock, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 library.add(faChevronDown, faChevronUp, faLock, faUnlock, faPaperPlane);
 const emit = defineEmits(['addLink'])
+const { showToggles = true } = defineProps(['showToggles']) // Optional prop
 const isPrivate = ref(false)
 const inputData = ref("")
 const description = ref("")
@@ -68,4 +69,5 @@ input {
 input {
     border-radius: 0;
     height: 100%;
-}</style>
+}
+</style>
