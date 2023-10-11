@@ -7,6 +7,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 import { useAuthStore } from './store/authStore'
 import { supabase } from './supabase'
+import('preline')
 
 const app = createApp(App)
 app.use(createPinia())

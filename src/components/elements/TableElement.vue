@@ -1,7 +1,7 @@
 ﻿<template>
     <div class="responsive-table">
         <main class="p-5">
-            <div class="min-h-full mt-6 overflow-hidden overflow-x-auto border border-gray-700 rounded-md mx-auto"
+            <div class="min-h-full mt-6 overflow-hidden border border-gray-700 rounded-md mx-auto"
                 style="max-width: 1200px;">
                 <table class="w-full divide-y divide-gray-800" v-if="links.length > 0">
                     <thead class="bg-gray-800">
@@ -28,26 +28,26 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 w-10 h-10 center-dot">
-                                        <div class="dot">
+                                        <div class="dot bg-gray-700">
                                             <img class=""
                                                 :src="'https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=' + link.link_url"
                                                 alt="" />
                                         </div>
                                     </div>
-                                    <div v-if="editingLink !== link.id" class="ml-4" style="max-width: 380px;">
-                                        <a :href="link.link_url "><div class="text-sm font-medium text-gray-300 truncate ">{{ link.link_url }}</div></a>
-                                        <div class="text-sm font-small text-gray-300 truncate ">{{ link.link_name }}</div>
+                                    <div v-if="editingLink !== link.id" class="ml-4 your-element-class">
+                                        <a :href="link.link_url "><div class="text-sm font-medium text-gray-200 truncate ">{{ link.link_url }}</div></a>
+                                        <div class="text-sm font-small text-gray-500 truncate">{{ link.link_name }}</div>
                                     </div>
                                     <div v-else class="ml-4">
                                         <input v-model="link.link_url" type="text"
-                                            class="p-2 w-full bg-gray-900 text-white rounded"><br>
+                                            class="p-2 w-full bg-gray-900 text-white rounded" placeholder="Title"><br>
                                         <input v-model="link.link_name" type="text"
-                                            class="p-2 w-full bg-gray-900 text-white rounded">
+                                            class="p-2 w-full bg-gray-900 text-white rounded" placeholder="Description">
                                     </div>
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-300">
+                                <div class="text-sm text-gray-500">
                                     {{ link.updated_at ? formatDate(link.updated_at) : formatDate(link.created_at) }}
                                 </div>
                             </td>
@@ -132,23 +132,15 @@ defineExpose({
 </script>
 <style scoped>
 
-table {
-    overflow: hidden;
-}
 .dot {
     border-radius: 50%;
     display: inline-block;
     height: 32px;
     width: 32px;
     z-index: 1;
-    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.responsive-table table {
-    @apply w-full;
 }
 
 .fade-enter-active,
@@ -162,6 +154,20 @@ table {
     height: 0px;
     overflow: hidden;
 }
+
+
+/* Default style for larger screens */
+.your-element-class {
+    max-width: 380px; 
+}
+
+/* Media query for screens smaller than or equal to 768px */
+@media (max-width: 768px) {
+    .your-element-class {
+        max-width: 120px; /* Adjust this value as needed for smaller screens */
+    }
+}
+
 
 /* Custom responsive styles */
 @media screen and (max-width: 1024px) {
