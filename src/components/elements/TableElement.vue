@@ -131,6 +131,10 @@ defineExpose({
 
 </script>
 <style scoped>
+
+table {
+    overflow: hidden;
+}
 .dot {
     border-radius: 50%;
     display: inline-block;
