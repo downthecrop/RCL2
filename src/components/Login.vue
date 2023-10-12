@@ -12,6 +12,14 @@
 import { inject } from 'vue'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { Auth } from '@nuxtbase/auth-ui-vue'
+import { useAuthStore } from '../store/authStore'
+import router from '../router/index'
+
+const authStore = useAuthStore();
+if(() => authStore.user != null){
+  // We're already logged in, redirecting...
+  router.push('/')
+}
 
 const appearance = {
   theme: ThemeSupa,
