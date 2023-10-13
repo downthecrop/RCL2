@@ -39,17 +39,14 @@
                 </a>
 
                 <a class="font-medium text-gray-600 hover:text-gray-500 py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
-                  href="#">
+                  href="/dashboard">
                   Dashboard
                 </a>
 
-                <div
-                  class="hs-dropdown [--strategy:static] md:[--strategy:absolute] [--adaptive:none] md:[--trigger:hover] py-3 md:py-4">
-                  <button type="button"
-                    class="flex items-center w-full text-gray-600 hover:text-gray-400 font-medium dark:text-gray-400 dark:hover:text-gray-500">
-                    Login
-                  </button>
-                </div>
+                <a class="font-medium text-gray-600 hover:text-gray-500 py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
+                  href="/login">
+                  Login
+                </a>
               </div>
             </div>
           </div>
@@ -376,16 +373,6 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '../store/authStore'
-import router from '../router/index'
-
-const authStore = useAuthStore();
-if(() => authStore.user != null){
-  // We're already logged in, redirecting...
-  router.push('/dashboard')
-}
-
-
 </script>
 
 <style>

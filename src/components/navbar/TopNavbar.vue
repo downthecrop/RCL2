@@ -3,9 +3,9 @@
     <div class="flex justify-center">
       <div class="flex items-center justify-between max-w-screen-lg w-full">
         <div class="flex items-center space-x-3">
-          <RouterLink to="/home" class="p-2 text-xl font-semibold tracking-wider text-white uppercase">
+          <span class="p-2 text-xl font-semibold tracking-wider text-white uppercase">
             RCL2
-          </RouterLink>
+          </span>
         </div>
         <div class="flex-grow flex items-center justify-center">
           <div class="p-2 text-xl font-semibold tracking-wider text-white uppercase">
