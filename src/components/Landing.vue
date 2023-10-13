@@ -34,7 +34,7 @@
               <div
                 class="flex flex-col gap-x-0 mt-5 divide-y divide-dashed divide-gray-200 md:flex-row md:items-center md:justify-end md:gap-x-7 md:mt-0 md:pl-7 md:divide-y-0 md:divide-solid dark:divide-gray-700">
                 <a class="font-medium text-gray-600 hover:text-gray-500 py-3 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
-                  href="#" aria-current="page">
+                  href="https://github.com/downthecrop/rcl2" target="_new" aria-current="page">
                   GitHub
                 </a>
 
@@ -79,7 +79,7 @@
             <p class="mt-3 text-lg text-gray-300">Online bookmarks and link sharing without needing to login.</p>
             <div class="mt-5 flex flex-col justify-center items-center gap-2 sm:flex-row sm:gap-3">
               <a class="w-full sm:w-auto inline-flex justify-center items-center gap-x-3.5 text-center bg-white shadow-sm text-sm font-medium rounded-md hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-slate-900 transition py-3 px-4"
-                href="https://github.com/htmlstreamofficial/preline/tree/main/examples/html" target="_blank">
+                href="https://github.com/downthecrop/rcl2" target="_blank">
                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                   viewBox="0 0 16 16">
                   <path
@@ -88,12 +88,8 @@
                 Get the source code
               </a>
               <a class="w-full sm:w-auto inline-flex justify-center items-center gap-x-3.5 text-center border border-2 border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-300 hover:text-white hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-800 transition py-3 px-4"
-                href="../examples.html">
-                <svg class="w-2.5 h-2.5" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M11.2792 1.64001L5.63273 7.28646C5.43747 7.48172 5.43747 7.79831 5.63273 7.99357L11.2792 13.64"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                </svg>
-                Back to examples
+                href="./login">
+                Go to Dashboard
               </a>
             </div>
           </div>
@@ -140,9 +136,9 @@
         <div>
           <div>
             <h3 class="block font-bold text-gray-800 dark:text-white">Anonymous Links</h3>
-            <p class="text-gray-600 dark:text-gray-400">If you have ever been on another computer and wanted to send
-              yourself a link for later RCL2 is a perfect solution. Simply send the link anonymously to your profile to
-              later.</p>
+            <p class="text-gray-600 dark:text-gray-400">If you've ever been on another computer and wanted to send
+              yourself a link for later, RCL2 is the perfect solution. Simply send the link anonymously to your profile
+              for future reference.</p>
           </div>
         </div>
       </a>
@@ -159,8 +155,9 @@
           <div>
             <h3 class="block font-bold text-gray-800 dark:text-white">Chrome Extension Integration</h3>
             <p class="text-gray-600 dark:text-gray-400">The legacy of the original RCL lives on with the official Right
-              Click List Chrome extension. Rightclick any webpage, image, or anything at all to save it to your RCL2
-              profile for future reference.</p>
+              Click List Chrome extension. Right-click any webpage, image, or anything at all to save it to your RCL2
+              profile for future reference.
+            </p>
           </div>
         </div>
       </a>
@@ -175,10 +172,10 @@
 
         <div>
           <div>
-            <h3 class="block font-bold text-gray-800 dark:text-white">Open Source and Self Host-able</h3>
-            <p class="text-gray-600 dark:text-gray-400">RCL2 is Open Source under the MIT license and can be used for any
-              and all purposes. Note: This public instance has the right to terminate profiles at any time. If you'd
-              rather play by your own rules self hosting instructions can be found here!</p>
+            <h3 class="block font-bold text-gray-800 dark:text-white">Open Source and Self-Hostable</h3>
+            <p class="text-gray-600 dark:text-gray-400">RCL2 is open source under the MIT license and can be used for any
+              and all purposes. Note: This public instance reserves the right to terminate profiles at any time. If you'd
+              rather play by your own rules, self-hosting instructions can be found here!</p>
           </div>
         </div>
       </a>
@@ -207,7 +204,7 @@
             <button
               class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-left text-gray-800 transition hover:text-gray-500 dark:text-gray-200 dark:hover:text-gray-400"
               aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one">
-              What can I use RCL2 for?
+              What Can I Use RCL2 For?
               <svg
                 class="hs-accordion-active:hidden block w-3 h-3 text-gray-600 group-hover:text-gray-500 dark:text-gray-400"
                 width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -226,9 +223,9 @@
               aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one">
               <div class="pr-8">
                 <p class="text-gray-600 dark:text-gray-400">
-                  This public instance allows anyone to sign up and use our service as a anonymous persistent bookmark and
-                  link sharing database. Primary usecases are think like quickly saving a pastebin url from a school
-                  computer for later
+                  This public instance allows anyone to sign up and use our service as an anonymous, persistent bookmark
+                  and link-sharing database. Primary use cases include things like quickly saving a Pastebin URL from a
+                  school computer for later retrieval.
                 </p>
               </div>
             </div>
@@ -238,7 +235,7 @@
             <button
               class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-left text-gray-800 transition hover:text-gray-500 dark:text-gray-200 dark:hover:text-gray-400"
               aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-two">
-              Is the Chrome Extensions available for private instances?
+              Is the Chrome Extension Available for Private Instances?
               <svg
                 class="hs-accordion-active:hidden block w-3 h-3 text-gray-600 group-hover:text-gray-500 dark:text-gray-400"
                 width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -257,9 +254,9 @@
               aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-two">
               <div class="pr-8">
                 <p class="text-gray-600 dark:text-gray-400">
-                  Although there is no built-in configuration for selecting a server url this instance uses the exact same
-                  source code that is available on GitHub. You are welcome to edit the url and bundle yourself a custom
-                  extension!
+                  Although there is no built-in configuration for selecting a server URL, this instance uses the exact
+                  same source code available on GitHub. You are welcome to edit the URL and bundle your own custom
+                  extension.
                 </p>
               </div>
             </div>
@@ -269,7 +266,7 @@
             <button
               class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-left text-gray-800 transition hover:text-gray-500 dark:text-gray-200 dark:hover:text-gray-400"
               aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-three">
-              What are Private Links
+              What Are Private Links?
               <svg
                 class="hs-accordion-active:hidden block w-3 h-3 text-gray-600 group-hover:text-gray-500 dark:text-gray-400"
                 width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -288,8 +285,8 @@
               aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-three">
               <div class="pr-8">
                 <p class="text-gray-600 dark:text-gray-400">
-                  Private links are not visible to anyone except you. They will not be displayed on your profile. Verified
-                  links can be switched from public to private at any time by using the edit function of the dashboard.
+                  Private links are visible only to you and will not be displayed on your profile. Verified links can be
+                  switched from public to private at any time by using the edit function on the dashboard.
                 </p>
               </div>
             </div>
@@ -299,7 +296,7 @@
             <button
               class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-left text-gray-800 transition hover:text-gray-500 dark:text-gray-200 dark:hover:text-gray-400"
               aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-four">
-              Are any third-party services required?
+              Are Any Third-Party Services Required?
               <svg
                 class="hs-accordion-active:hidden block w-3 h-3 text-gray-600 group-hover:text-gray-500 dark:text-gray-400"
                 width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -318,9 +315,9 @@
               aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-four">
               <div class="pr-8">
                 <p class="text-gray-600 dark:text-gray-400">
-                  Currently RCL2 only allows logins using the OAuth2 Standard. And at that are limited to those services
-                  that are common for the demographic that RCL2 would attract. Favicons are fetched using a Google API can
-                  can be disabled in the Vite build settings.
+                  Currently, RCL2 only allows logins using the OAuth2 standard. It is limited to those services that are
+                  commonly used by the demographic that RCL2 aims to attract. Favicons are fetched using a Google API, but
+                  this feature can be disabled in the Vite build settings.
                 </p>
               </div>
             </div>
@@ -346,21 +343,21 @@
           <li
             class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-gray-600">
             <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-gray-200"
-              href="#">
+              href="https://github.com/downthecrop/rcl2" target="_new">
               GitHub
             </a>
           </li>
           <li
             class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-gray-600">
             <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-gray-200"
-              href="#">
+              href="./dashboard">
               Dashboard
             </a>
           </li>
           <li
             class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-gray-600">
             <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-gray-200"
-              href="#">
+              href="./login">
               Login
             </a>
           </li>
@@ -376,58 +373,8 @@
 </script>
 
 <style>
-.circle-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
-
 .custom-fa-size {
   font-size: 32px;
   /* Set to the size you want */
-}
-
-.custom-svg-size {
-  width: 32px;
-  /* Set to the size you want */
-  height: 32px;
-  /* Set to the size you want */
-}
-
-.circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 2px dashed violet;
-  border-radius: 50%;
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  animation: expandAndFade 10s infinite;
-}
-
-.circle:nth-child(2) {
-  animation-delay: 0.75s;
-}
-
-.circle:nth-child(3) {
-  animation-delay: 1.5s;
-}
-
-.circle:nth-child(4) {
-  animation-delay: 2.25s;
-}
-
-@keyframes expandAndFade {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-
-  100% {
-    width: 1000px;
-    height: 1000px;
-    opacity: 0;
-  }
 }
 </style>
