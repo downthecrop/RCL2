@@ -19,7 +19,7 @@ supabase.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN') {
     authStore.setUser(session.user);
     if (router.currentRoute.value.path === '/login') {
-      router.push('/');
+      router.push('/Dashboard');
     }
   } else if (event !== 'INITIAL_SESSION') {
     authStore.setUser(null);

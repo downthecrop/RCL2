@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '../store/authStore';
-import Home from '../components/Home.vue';
+import Dashboard from '../components/Dashboard.vue';
 import Login from '../components/Login.vue';
-import Landing from '../components/GenericHome.vue';
+import Landing from '../components/Landing.vue';
 import Public from '../components/Public.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/dashboard',
     name: 'Dashboard',
-    component: Home,
+    component: Dashboard,
     meta: {
       requiresAuth: true,
     },
@@ -20,8 +20,8 @@ const routes = [
     component: Login,
   },
   {
-    path: '/Landing',
-    name: 'Landing',
+    path: '/',
+    name: 'Home',
     component: Landing,
   },
   {

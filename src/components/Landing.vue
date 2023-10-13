@@ -48,11 +48,6 @@
                   <button type="button"
                     class="flex items-center w-full text-gray-600 hover:text-gray-400 font-medium dark:text-gray-400 dark:hover:text-gray-500">
                     Login
-                    <svg class="ml-2 w-2.5 h-2.5 text-gray-600" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2 5L8.16086 10.6869C8.35239 10.8637 8.64761 10.8637 8.83914 10.6869L15 5"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-                    </svg>
                   </button>
                 </div>
               </div>
@@ -73,7 +68,8 @@
       </div>
       <!-- End Gradients -->
 
-      <div class="max-w-[85rem] px-4 pt-10 sm:px-6 lg:px-8 lg:pt-14 mx-auto" style="background-image: url(./hyperdrive-dark.svg);  background-repeat: no-repeat; background-size: contain, cover;">
+      <div class="max-w-[85rem] px-4 pt-10 sm:px-6 lg:px-8 lg:pt-14 mx-auto"
+        style="background-image: url(./hyperdrive-dark.svg);  background-repeat: no-repeat; background-size: contain, cover;">
         <!-- ========== END HEADER ========== -->
 
         <!-- ========== MAIN CONTENT ========== -->
@@ -118,75 +114,81 @@
         <!-- Clients -->
         <div class="flex justify-center gap-x-6 sm:gap-x-12 lg:gap-x-24">
           <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500"
-            src="supabase-logo-wordmark--dark.svg"/>
+            src="supabase-logo-wordmark--dark.svg" />
+
+          <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500" src="vuejs-ar21.svg" />
 
           <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500"
-            src="vuejs-ar21.svg"/>
+            src="tailwindcss-logotype-white.svg">
 
-          <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500"
-           src="tailwindcss-logotype-white.svg">
-
-          <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500"
-          src="preline.svg">
+          <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500" src="preline.svg">
         </div>
         <!-- End Clients -->
       </div>
-        <!-- This is where the circles were -->
+      <!-- This is where the circles were -->
     </div>
     <!-- End Hero -->
   </div>
 
-<!-- Icon Blocks -->
-<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-3 xl:gap-6">
-    <!-- Card -->
-    <a class="group flex gap-y-6 w-full h-full hover:bg-gray-100 rounded-lg p-5 transition-all dark:hover:bg-white/[.075]" href="#">
-      <svg class="flex-shrink-0 w-8 h-8 text-gray-800 mt-0.5 mr-6 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-        <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"/>
-      </svg>
+  <!-- Icon Blocks -->
+  <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-3 xl:gap-6">
+      <!-- Card -->
+      <a class="group flex gap-y-6 w-full h-full hover:bg-gray-100 rounded-lg p-5 transition-all dark:hover:bg-white/[.075]"
+        href="#">
+        <span class="icon-wrapper flex-shrink-0 w-8 h-8 text-gray-800 mt-0.5 mr-6 dark:text-gray-200">
+          <i class="fa fa-user-secret custom-fa-size" aria-hidden="true"></i>
+        </span>
 
-      <div>
         <div>
-          <h3 class="block font-bold text-gray-800 dark:text-white">Anonymous Links</h3>
-          <p class="text-gray-600 dark:text-gray-400">If you have ever been on another computer and wanted to send yourself a link for later RCL2 is a perfect solution. Simply send the link anonymously to your profile to later.</p>
+          <div>
+            <h3 class="block font-bold text-gray-800 dark:text-white">Anonymous Links</h3>
+            <p class="text-gray-600 dark:text-gray-400">If you have ever been on another computer and wanted to send
+              yourself a link for later RCL2 is a perfect solution. Simply send the link anonymously to your profile to
+              later.</p>
+          </div>
         </div>
-      </div>
-    </a>
-    <!-- End Card -->
+      </a>
+      <!-- End Card -->
 
-    <!-- Card -->
-    <a class="group flex gap-y-6 w-full h-full hover:bg-gray-100 rounded-lg p-5 transition-all dark:hover:bg-white/[.075]" href="#">
-      <svg class="flex-shrink-0 w-8 h-8 text-gray-800 mt-0.5 mr-6 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .447.276L8.81 1h4.69A1.5 1.5 0 0 1 15 2.5V11h.5a.5.5 0 0 1 0 1h-2.86l.845 3.379a.5.5 0 0 1-.97.242L12.11 14H3.89l-.405 1.621a.5.5 0 0 1-.97-.242L3.36 12H.5a.5.5 0 0 1 0-1H1V2.5A1.5 1.5 0 0 1 2.5 1h4.691l.362-.724A.5.5 0 0 1 8 0ZM2 11h12V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5V11Zm9.61 1H4.39l-.25 1h7.72l-.25-1Z"/>
-      </svg>
+      <!-- Card -->
+      <a class="group flex gap-y-6 w-full h-full hover:bg-gray-100 rounded-lg p-5 transition-all dark:hover:bg-white/[.075]"
+        href="#">
+        <span class="icon-wrapper flex-shrink-0 w-8 h-8 text-gray-800 mt-0.5 mr-6 dark:text-gray-200">
+          <i class="fa fa-solid fa-puzzle-piece custom-fa-size" aria-hidden="true"></i>
+        </span>
 
-      <div>
         <div>
-          <h3 class="block font-bold text-gray-800 dark:text-white">Chrome Extension Integration</h3>
-          <p class="text-gray-600 dark:text-gray-400">The legacy of the original RCL lives on with the official Right Click List Chrome extension. Rightclick any webpage, image, or anything at all to save it to your RCL2 profile for future reference.</p>
+          <div>
+            <h3 class="block font-bold text-gray-800 dark:text-white">Chrome Extension Integration</h3>
+            <p class="text-gray-600 dark:text-gray-400">The legacy of the original RCL lives on with the official Right
+              Click List Chrome extension. Rightclick any webpage, image, or anything at all to save it to your RCL2
+              profile for future reference.</p>
+          </div>
         </div>
-      </div>
-    </a>
-    <!-- End Card -->
+      </a>
+      <!-- End Card -->
 
-    <!-- Card -->
-    <a class="group flex gap-y-6 w-full h-full hover:bg-gray-100 rounded-lg p-5 transition-all dark:hover:bg-white/[.075]" href="#">
-      <svg class="flex-shrink-0 w-8 h-8 text-gray-800 mt-0.5 mr-6 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zm2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5z"/>
-      </svg>
+      <!-- Card -->
+      <a class="group flex gap-y-6 w-full h-full hover:bg-gray-100 rounded-lg p-5 transition-all dark:hover:bg-white/[.075]"
+        href="#">
+        <span class="icon-wrapper flex-shrink-0 w-8 h-8 text-gray-800 mt-0.5 mr-6 dark:text-gray-200">
+          <i class="fa fa-solid fa-server custom-fa-size" aria-hidden="true"></i>
+        </span>
 
-      <div>
         <div>
-          <h3 class="block font-bold text-gray-800 dark:text-white">Open Source and Self Host-able</h3>
-          <p class="text-gray-600 dark:text-gray-400">RCL2 is Open Source under the MIT license and can be used for any and all purposes. Note: This public instance has the right to terminate profiles at any time. If you'd rather play by your own rules self hosting instructions can be found here!</p>
+          <div>
+            <h3 class="block font-bold text-gray-800 dark:text-white">Open Source and Self Host-able</h3>
+            <p class="text-gray-600 dark:text-gray-400">RCL2 is Open Source under the MIT license and can be used for any
+              and all purposes. Note: This public instance has the right to terminate profiles at any time. If you'd
+              rather play by your own rules self hosting instructions can be found here!</p>
+          </div>
         </div>
-      </div>
-    </a>
-    <!-- End Card -->
+      </a>
+      <!-- End Card -->
+    </div>
   </div>
-</div>
-<!-- End Icon Blocks -->
+  <!-- End Icon Blocks -->
 
   <!-- FAQ -->
   <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -227,7 +229,9 @@
               aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one">
               <div class="pr-8">
                 <p class="text-gray-600 dark:text-gray-400">
-                  This public instance allows anyone to sign up and use our service as a anonymous persistent bookmark and link sharing database. Primary usecases are think like quickly saving a pastebin url from a school computer for later
+                  This public instance allows anyone to sign up and use our service as a anonymous persistent bookmark and
+                  link sharing database. Primary usecases are think like quickly saving a pastebin url from a school
+                  computer for later
                 </p>
               </div>
             </div>
@@ -256,7 +260,9 @@
               aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-two">
               <div class="pr-8">
                 <p class="text-gray-600 dark:text-gray-400">
-                  Although there is no built-in configuration for selecting a server url this instance uses the exact same source code that is available on GitHub. You are welcome to edit the url and bundle yourself a custom extension!
+                  Although there is no built-in configuration for selecting a server url this instance uses the exact same
+                  source code that is available on GitHub. You are welcome to edit the url and bundle yourself a custom
+                  extension!
                 </p>
               </div>
             </div>
@@ -285,7 +291,8 @@
               aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-three">
               <div class="pr-8">
                 <p class="text-gray-600 dark:text-gray-400">
-                  Private links are not visible to anyone except you. They will not be displayed on your profile. Verified links can be switched from public to private at any time by using the edit function of the dashboard.
+                  Private links are not visible to anyone except you. They will not be displayed on your profile. Verified
+                  links can be switched from public to private at any time by using the edit function of the dashboard.
                 </p>
               </div>
             </div>
@@ -314,7 +321,9 @@
               aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-four">
               <div class="pr-8">
                 <p class="text-gray-600 dark:text-gray-400">
-                  Currently RCL2 only allows logins using the OAuth2 Standard. And at that are limited to those services that are common for the demographic that RCL2 would attract. Favicons are fetched using a Google API can can be disabled in the Vite build settings.
+                  Currently RCL2 only allows logins using the OAuth2 Standard. And at that are limited to those services
+                  that are common for the demographic that RCL2 would attract. Favicons are fetched using a Google API can
+                  can be disabled in the Vite build settings.
                 </p>
               </div>
             </div>
@@ -329,38 +338,54 @@
   <!-- End FAQ -->
 
   <footer>
-  <div class="max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-    <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-5 text-center">
-      <div>
-      </div>
-      <!-- End Col -->
+    <div class="max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-5 text-center">
+        <div>
+        </div>
+        <!-- End Col -->
 
-      <ul class="text-center">
-        <li class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-gray-600">
-          <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-gray-200" href="#">
-            About
-          </a>
-        </li>
-        <li class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-gray-600">
-          <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-gray-200" href="#">
-            Services
-          </a>
-        </li>
-        <li class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-gray-600">
-          <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-gray-200" href="#">
-            Blog
-          </a>
-        </li>
-      </ul>
-      <!-- End Col -->
+        <ul class="text-center">
+          <li
+            class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-gray-600">
+            <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-gray-200"
+              href="#">
+              GitHub
+            </a>
+          </li>
+          <li
+            class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-gray-600">
+            <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-gray-200"
+              href="#">
+              Dashboard
+            </a>
+          </li>
+          <li
+            class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['/'] before:text-gray-300 dark:before:text-gray-600">
+            <a class="inline-flex gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-gray-200"
+              href="#">
+              Login
+            </a>
+          </li>
+        </ul>
+        <!-- End Col -->
+      </div>
+      <!-- End Grid -->
     </div>
-    <!-- End Grid -->
-  </div>
-</footer>
+  </footer>
 </template>
 
-<script>
+<script setup>
+import { useAuthStore } from '../store/authStore'
+import router from '../router/index'
+
+const authStore = useAuthStore();
+if(() => authStore.user != null){
+  // We're already logged in, redirecting...
+  router.push('/dashboard')
+}
+
+
 </script>
 
 <style>
@@ -368,6 +393,18 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+}
+
+.custom-fa-size {
+  font-size: 32px;
+  /* Set to the size you want */
+}
+
+.custom-svg-size {
+  width: 32px;
+  /* Set to the size you want */
+  height: 32px;
+  /* Set to the size you want */
 }
 
 .circle {
@@ -399,11 +436,11 @@
     height: 0;
     opacity: 1;
   }
+
   100% {
     width: 1000px;
     height: 1000px;
     opacity: 0;
   }
 }
-
 </style>
