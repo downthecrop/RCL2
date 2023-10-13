@@ -72,7 +72,7 @@
         <!-- ========== MAIN CONTENT ========== -->
         <main id="content" role="main">
           <div class="mt-5 flex flex-col justify-center items-center gap-2 sm:flex-row sm:gap-3">
-            <img src="rcl.svg" width="100">
+            <img :src='`rcl.svg`' width="100">
           </div>
           <div class="text-center py-10 px-4 sm:px-6 lg:px-8">
             <h1 class="block text-2xl font-bold text-white sm:text-4xl">Right Click List 2</h1>
@@ -107,14 +107,14 @@
         <!-- Clients -->
         <div class="flex justify-center gap-x-6 sm:gap-x-12 lg:gap-x-24">
           <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500"
-            src="supabase-logo-wordmark--dark.svg" />
+            :src="`supabase-logo-wordmark--dark.svg`" />
 
-          <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500" src="vuejs-ar21.svg" />
+          <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500" :src="`vuejs-ar21.svg`" />
 
           <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500"
-            src="tailwindcss-logotype-white.svg">
+            :src="`tailwindcss-logotype-white.svg`">
 
-          <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500" src="preline.svg">
+          <img class="py-3 lg:py-5 w-16 h-auto md:w-20 lg:w-24 mx-auto sm:mx-0 text-gray-500" :src="`preline.svg`">
         </div>
         <!-- End Clients -->
       </div>
