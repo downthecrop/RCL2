@@ -1,3 +1,5 @@
+![](https://github.com/downthecrop/RCL2/blob/main/readme-promo.png?raw=true)
+
 # RCL2 - Your Persistent Anonymous Bookmark and Link Sharing Database
 
 ## Table of Contents
